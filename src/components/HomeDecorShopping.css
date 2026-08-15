@@ -1,0 +1,325 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    text-decoration:none;
+}
+
+body{
+    background:#f5f6fa;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+    width:100%;
+    max-width:1800px;
+    margin:15px auto;
+    padding:0 10px;
+
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:12px;
+}
+
+/* ================= CARD ================= */
+
+.cart{
+    background:#fff;
+    border-radius:10px;
+    padding:8px;
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+
+    transition:.3s;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.cart:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.cart.active{
+    border:2px solid #123C7A;
+}
+
+/* ================= IMAGE ================= */
+
+.cart img{
+    width:100%;
+    height:165px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+/* ================= HEART ================= */
+
+.wishlist{
+    position:absolute;
+    top:8px;
+    right:8px;
+
+    width:30px;
+    height:30px;
+
+    background:#fff;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:16px;
+    cursor:pointer;
+
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+
+    transition:.3s;
+}
+
+.wishlist:hover{
+    transform:scale(1.08);
+}
+
+/* ================= TITLE ================= */
+
+.head{
+    font-size:15px;
+    font-weight:600;
+    color:#222;
+
+    margin-top:8px;
+    margin-bottom:5px;
+
+    line-height:1.3;
+    min-height:40px;
+}
+
+/* ================= RATING ================= */
+
+.rating{
+    display:flex;
+    align-items:center;
+    gap:2px;
+
+    color:#ffb400;
+    font-size:12px;
+
+    margin-bottom:6px;
+}
+
+.rating span{
+    color:#777;
+    font-size:11px;
+    margin-left:4px;
+}
+
+/* ================= PRICE ================= */
+.price-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .old-price {
+    font-size: 24px;
+    color: #6b7280;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px; /* line ki thickness */
+  }
+  
+  .new-price {
+    font-size: 42px;
+    font-weight: 700;
+    color: #000;
+  }
+
+
+
+
+
+
+.discount{
+    font-size:12px;
+    font-weight:700;
+    color:#123C7A;
+}
+
+/* ================= BUTTON ================= */
+
+.cartBtn{
+    margin-top:auto;
+
+    width:100%;
+    padding:7px;
+
+    border:none;
+    border-radius:6px;
+
+    background:#edf3fb;
+    color:#123C7A;
+
+    font-size:13px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.cartBtn:hover{
+    background:#123C7A;
+    color:#fff;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1700px){
+
+.products{
+grid-template-columns:repeat(5,1fr);
+}
+
+}
+
+@media(max-width:1350px){
+
+.products{
+grid-template-columns:repeat(4,1fr);
+}
+
+}
+
+@media(max-width:1050px){
+
+.products{
+grid-template-columns:repeat(3,1fr);
+}
+
+.cart img{
+height:180px;
+}
+
+}
+
+@media(max-width:768px){
+
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+.cart img{
+height:170px;
+}
+
+}
+
+@media(max-width:500px){
+
+.products{
+grid-template-columns:1fr;
+padding:12px;
+}
+
+.cart img{
+height:220px;
+}
+
+.head{
+font-size:18px;
+}
+
+.newPrice{
+font-size:22px;
+}
+
+.cartBtn{
+font-size:15px;
+padding:10px;
+}
+
+}
+/* ================= SHOP BANNER ================= */
+
+.shopBanner{
+    width:95%;
+    max-width:1750px;
+    margin:20px auto 25px;
+
+    background:linear-gradient(135deg,#123C7A,#1E5CB3);
+
+    border-radius:18px;
+
+    color:#fff;
+
+    padding:45px 30px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.shopBanner h1{
+    font-size:42px;
+    margin-bottom:12px;
+    font-weight:700;
+}
+
+.shopBanner p{
+    font-size:19px;
+    opacity:.95;
+    margin-bottom:28px;
+}
+
+.shopNowBtn{
+    background:#fff;
+    color:#123C7A;
+
+    border:none;
+    outline:none;
+
+    padding:15px 42px;
+
+    font-size:18px;
+    font-weight:700;
+
+    border-radius:50px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.shopNowBtn:hover{
+    background:#ffd814;
+    color:#111;
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.shopBanner{
+    padding:30px 18px;
+}
+
+.shopBanner h1{
+    font-size:30px;
+}
+
+.shopBanner p{
+    font-size:16px;
+}
+
+.shopNowBtn{
+    width:100%;
+    padding:14px;
+}
+
+}

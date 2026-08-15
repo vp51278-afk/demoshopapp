@@ -1,0 +1,316 @@
+.shoppingPage{
+    max-width:1350px;
+    margin:30px auto;
+    padding:25px;
+    display:flex;
+    gap:35px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+/* ================= LEFT ================= */
+
+.leftSection{
+    width:42%;
+}
+
+.mainImage{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.buttonBox{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.cartButton,
+.buyButton{
+    flex:1;
+    height:54px;
+    border:none;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    transition:.3s;
+}
+
+.cartButton{
+    background:#FFD814;
+    color:#111;
+}
+
+.cartButton:hover{
+    background:#F7CA00;
+}
+
+.buyButton{
+    background:#123C7A;
+    color:#fff;
+}
+
+.buyButton:hover{
+    background:#0e2f61;
+}
+
+/* ================= RIGHT ================= */
+
+.rightSection{
+    width:58%;
+}
+
+.rightSection h1{
+    font-size:32px;
+    color:#222;
+    line-height:1.4;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+/* ================= Rating ================= */
+
+.ratingBox{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin:18px 0;
+}
+/* ================= RATING ================= */
+
+.rating{
+    display:flex;
+    align-items:center;
+
+    gap:3px;
+
+    color:#ffb400;
+
+    font-size:18px;
+
+    margin-bottom:12px;
+}
+
+.rating span{
+    color:#777;
+    font-size:15px;
+    margin-left:6px;
+}
+
+/* ================= PRICE ================= */
+
+.price{
+    display:flex;
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:18px;
+}
+
+.newPrice{
+    font-size:30px;
+    font-weight:700;
+    color:#111;
+}
+
+.oldPrice{
+    font-size:18px;
+    color:#999;
+    text-decoration:line-through;
+}
+
+.discount{
+    font-size:18px;
+    font-weight:700;
+    color:#123C7A;
+}
+
+/* ================= Divider ================= */
+
+hr{
+    border:none;
+    border-top:1px solid #e5e5e5;
+    margin:25px 0;
+}
+
+/* ================= Headings ================= */
+
+.deliveryBox h3,
+.offerBox h3,
+.detailsBox h3{
+    color:#123C7A;
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+/* ================= Delivery ================= */
+
+.deliveryBox p{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:17px;
+    color:#444;
+}
+
+/* ================= Offers ================= */
+
+.offerBox ul,
+.detailsBox ul{
+    padding-left:22px;
+}
+
+.offerBox li,
+.detailsBox li{
+    margin:10px 0;
+    color:#555;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* ================= Features ================= */
+
+.featureBox{
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+}
+
+.featureBox div{
+    flex:1;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:18px;
+    text-align:center;
+    transition:.3s;
+}
+
+.featureBox div:hover{
+    border-color:#123C7A;
+    box-shadow:0 5px 15px rgba(18,60,122,.15);
+    transform:translateY(-4px);
+}
+
+.featureBox svg{
+    font-size:32px;
+    color:#123C7A;
+    margin-bottom:10px;
+}
+
+.featureBox p{
+    color:#333;
+    font-weight:600;
+}
+
+/* ================= Details ================= */
+
+.detailsBox ul{
+    padding-left:22px;
+}
+
+.detailsBox li{
+    margin:10px 0;
+    color:#555;
+    line-height:1.8;
+    font-size:16px;
+}
+
+/* ================= Responsive ================= */
+
+@media(max-width:992px){
+
+.shoppingPage{
+    flex-direction:column;
+}
+
+.leftSection,
+.rightSection{
+    width:100%;
+}
+
+.mainImage{
+    height:420px;
+}
+
+.rightSection h1{
+    font-size:28px;
+}
+
+.price{
+    font-size:30px;
+}
+
+.price del{
+    font-size:20px;
+}
+
+.price span{
+    font-size:20px;
+}
+
+.featureBox{
+    flex-direction:column;
+}
+
+}
+
+@media(max-width:576px){
+
+.shoppingPage{
+    padding:15px;
+}
+
+.mainImage{
+    height:320px;
+}
+
+.buttonBox{
+    flex-direction:column;
+}
+
+.cartButton,
+.buyButton{
+    height:50px;
+    font-size:16px;
+}
+
+.rightSection h1{
+    font-size:22px;
+}
+
+.price{
+    font-size:25px;
+}
+
+.price del{
+    font-size:18px;
+}
+
+.price span{
+    font-size:18px;
+}
+
+.deliveryBox p,
+.offerBox li,
+.detailsBox li{
+    font-size:15px;
+}
+
+.featureBox div{
+    padding:15px;
+}
+
+}
