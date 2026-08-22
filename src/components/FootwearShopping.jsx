@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 
 function FootwearShopping() {
-
   const location = useLocation();
 
   const product = location.state;
@@ -27,209 +26,177 @@ function FootwearShopping() {
   }
 
   return (
-    <>
+    <div className="shoppingPage">
 
-      <div className="shoppingPage">
+      {/* Left Section */}
+      <div className="leftSection">
 
-        {/* Left Section */}
+        <img
+          src={product.img}
+          alt={product.name}
+          className="mainImage"
+        />
 
-        <div className="leftSection">
+        <div className="buttonBox">
 
-          <img
-            src={product.img}
-            alt={product.name}
-            className="mainImage"
-          />
+          <button className="cartButton">
+            <FaShoppingCart />
+            Add to Cart
+          </button>
 
-          <div className="buttonBox">
+          <button className="buyButton">
+            <FaBolt />
+            Buy Now
+          </button>
 
-            <button className="cartButton">
+        </div>
+      </div>
 
-              <FaShoppingCart />
+      {/* Right Section */}
+      <div className="rightSection">
 
-              Add to Cart
+        {/* Product Name */}
+        <h1>{product.name}</h1>
 
-            </button>
+        {/* Rating */}
+        <div className="ratingBox">
 
-            <button className="buyButton">
+          <span className="rating">
+            4.5
+          </span>
 
-              <FaBolt />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
 
-              Buy Now
+          <span>
+            ({product.reviews || 0} Ratings)
+          </span>
 
-            </button>
+        </div>
 
+        {/* Price */}
+        <div className="price">
+
+          <span className="newPrice">
+            ₹{product.price}
+          </span>
+
+          {product.oldPrice && (
+            <del className="oldPrice">
+              ₹{product.oldPrice}
+            </del>
+          )}
+
+          {product.discount && (
+            <span className="discount">
+              {product.discount}
+            </span>
+          )}
+
+        </div>
+
+        <hr />
+
+        {/* Delivery */}
+        <div className="deliveryBox">
+
+          <h3>Delivery</h3>
+
+          <p>
+            <FaTruck style={{ color: "green" }} />
+            Free Delivery by Tomorrow
+          </p>
+
+        </div>
+
+        {/* Offers */}
+        <div className="offerBox">
+
+          <h3>Available Offers</h3>
+
+          <ul>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Free Delivery on Orders above ₹499
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
+          </ul>
+
+        </div>
+
+        <hr />
+
+        {/* Features */}
+        <div className="featureBox">
+
+          <div>
+            <FaTruck />
+            <p>Fast Delivery</p>
+          </div>
+
+          <div>
+            <FaUndo />
+            <p>7 Days Return</p>
+          </div>
+
+          <div>
+            <FaShieldAlt />
+            <p>Secure Payment</p>
           </div>
 
         </div>
 
-        {/* Right Section */}
+        <hr />
 
-        <div className="rightSection">
+        {/* Product Details */}
+        <div className="detailsBox">
 
-          <h1>
+          <h3>About this Item</h3>
 
-            {product.name}
+          <ul>
 
-          </h1>
+            <li>
+              Premium Quality Footwear
+            </li>
 
-          <div className="ratingBox">
+            <li>
+              Stylish & Comfortable Design
+            </li>
 
-            <span className="rating">
+            <li>
+              Perfect for Everyday Wear
+            </li>
 
-              4.5
+            <li>
+              Lightweight & Easy to Maintain
+            </li>
 
-            </span>
+            <li>
+              Durable & Comfortable Finish
+            </li>
 
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-
-            <span>
-
-              ({product.reviews} Ratings)
-
-            </span>
-
-          </div>
-
-          <h2 className="price">
-
-            ₹{product.price}
-
-            <del>
-
-              ₹{product.oldPrice}
-
-            </del>
-
-            <span>
-
-              {product.discount}
-
-            </span>
-
-          </h2>
-
-          <hr />
-
-          {/* Delivery */}
-
-          <div className="deliveryBox">
-
-            <h3>Delivery</h3>
-
-            <p>
-
-              <FaTruck style={{ color: "green" }} />
-
-              Free Delivery by Tomorrow
-
-            </p>
-
-          </div>
-
-          {/* Offers */}
-
-          <div className="offerBox">
-
-            <h3>Available Offers</h3>
-
-            <ul>
-
-              <li>
-                ✔ Bank Offer: 10% Instant Discount
-              </li>
-
-              <li>
-                ✔ No Cost EMI Available
-              </li>
-
-              <li>
-                ✔ Free Delivery on Orders above ₹499
-              </li>
-
-              <li>
-                ✔ Cash on Delivery Available
-              </li>
-
-            </ul>
-
-          </div>
-
-          <hr />
-
-          {/* Features */}
-
-          <div className="featureBox">
-
-            <div>
-
-              <FaTruck />
-
-              <p>Fast Delivery</p>
-
-            </div>
-
-            <div>
-
-              <FaUndo />
-
-              <p>7 Days Return</p>
-
-            </div>
-
-            <div>
-
-              <FaShieldAlt />
-
-              <p>Secure Payment</p>
-
-            </div>
-
-          </div>
-
-          <hr />
-
-          {/* Product Details */}
-
-          <div className="detailsBox">
-
-            <h3>About this Item</h3>
-
-            <ul>
-
-              <li>
-                Premium Quality Product
-              </li>
-
-              <li>
-                Stylish & Modern Design
-              </li>
-
-              <li>
-                Best for Home Decoration
-              </li>
-
-              <li>
-                Easy to Use & Maintain
-              </li>
-
-              <li>
-                Durable Premium Finish
-              </li>
-
-            </ul>
-
-          </div>
+          </ul>
 
         </div>
 
       </div>
 
-    </>
+    </div>
   );
 }
 

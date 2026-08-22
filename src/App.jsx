@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 // Home Page
 import Home from "./pages/Home";
 
-
+import Cart from "./components/Cart";
 // Customer Service
 import CustomerService from "./components/CustomerService";
 import Orders from "./components/Orders";
@@ -170,7 +170,7 @@ function App() {
         <Route path="/fashion/makeup" element={<Makeup />} />
         <Route path="/fashion/men" element={<Men />} />
         <Route path="/fashion/women" element={<Women />} />
-        
+        <Route path="/cart" element={<Cart />} />
 
         {/* Women's Fashion */}
         <Route path="/fashion/women/saree" element={<Saree />} />
@@ -297,7 +297,7 @@ function App() {
   path="/beauty/t-shirts-shopping"
   element={<TshirtsShopping />}
 />
-
+<Route path="/cart" element={<Cart />} />
 {/* Shirts */}
 <Route path="/beauty/shirts" element={<Shirts />} />
 <Route

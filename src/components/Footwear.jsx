@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Footwear.css";
 import CategorySection from "./CategorySection";
-
+import { addToCart } from "./addToCart";
 import {
   FaHeart,
   FaRegHeart,
@@ -11,136 +11,107 @@ import {
 } from "react-icons/fa";
 
 function Footwear() {
-
   // Navigation
   const navigate = useNavigate();
 
-  // 24 Products
-  const [liked, setLiked] = useState(Array(24).fill(false));
-  const [selected, setSelected] = useState(Array(24).fill(false));
+  // Products from MongoDB
+  const [products, setProducts] = useState([]);
+  const [liked, setLiked] = useState([]);
+  const [selected, setSelected] = useState([]);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/products?category=Footwear"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+
+        setProducts(data);
+        setLiked(Array(data.length).fill(false));
+        setSelected(Array(data.length).fill(false));
+      } catch (error) {
+        console.error(
+          "Error fetching footwear products:",
+          error
+        );
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // =========================
+  // Wishlist
+  // =========================
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
+  // =========================
+  // Card Selection
+  // =========================
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
 
+  // =========================
+  // Open Product
+  // =========================
+  const openProduct = (item, index) => {
+    toggleCard(index);
 
-  const products = [
-    {
-      img: "/download (21).jpeg",
-      name: "Black Stiletto Heels",
-      price: 899,
-      oldPrice: 1799,
-      reviews: 445,
-      discount: "50% OFF",
-    },
-    {
-      img: "/download (22).jpeg",
-      name: "White Block Heel Sandals",
-      price: 699,
-      oldPrice: 1399,
-      reviews: 389,
-      discount: "50% OFF",
-    },
-    {
-      img: "/download (23).jpeg",
-      name: "Nude Platform Heels",
-      price: 999,
-      oldPrice: 1999,
-      reviews: 456,
-      discount: "50% OFF",
-    },
-    {
-      img: "/download (24).jpeg",
-      name: "Embroidered Ethnic Jutti",
-      price: 599,
-      oldPrice: 1199,
-      reviews: 112,
-      discount: "50% OFF",
-    },
-    {
-      img: "/u3.jpeg",
-      name: "Crystal Party Heels",
-      price: 1299,
-      oldPrice: 2599,
-      reviews: 300,
-      discount: "50% OFF",
-    },
-    {
-      img: "/u2.jpeg",
-      name: "Classic White Sneakers",
-      price: 1199,
-      oldPrice: 2399,
-      reviews: 178,
-      discount: "50% OFF",
-    },
-    {
-      img: "/u1.jpeg",
-      name: "Premium Leather Ankle Boots",
-      price: 1499,
-      oldPrice: 2999,
-      reviews: 440,
-      discount: "50% OFF",
-    },
-    {
-      img: "/u.jpeg",
-      name: "Casual Pink Sneakers",
-      price: 899,
-      oldPrice: 1799,
-      reviews: 400,
-      discount: "50% OFF",
-    },
-  ];
+    navigate("/home-decor-shopping", {
+      state: item,
+    });
+  };
+
   return (
     <>
       {/* Category Section */}
       <CategorySection />
 
-      {/* Home Decor Banner */}
+      {/* Footwear Banner */}
       <div className="shopBanner">
         <h1>✨ Footwear Collection ✨</h1>
 
-        <p>
-        " For Elegant look."
-        </p>
+        <p>"For Elegant look."</p>
 
-        <button
-  className="shopNowBtn"
-  onClick={() =>
-    navigate("/home-decor-shopping", {
-      state: products[0],
-    })
-  }
->
-  Shop Now
-</button>
+        {products.length > 0 && (
+          <button
+            className="shopNowBtn"
+            onClick={() =>
+              navigate("/home-decor-shopping", {
+                state: products[0],
+              })
+            }
+          >
+            Shop Now
+          </button>
+        )}
       </div>
 
       {/* Products */}
       <div className="products">
         {products.map((item, index) => (
-   <div
-   key={index}
-   className={`cart ${
-     selected[index] ? "active" : ""
-   }`}
-   onClick={() => {
-     toggleCard(index);
- 
-     navigate("/home-decor-shopping", {
-       state: item,
-     });
-   }}
- >
-                        {/* Wishlist */}
-                        <div
+          <div
+            key={item._id || index}
+            className={`cart ${
+              selected[index] ? "active" : ""
+            }`}
+            onClick={() => openProduct(item, index)}
+          >
+            {/* Wishlist */}
+            <div
               className="wishlist"
               onClick={(e) => {
                 e.stopPropagation();
@@ -155,10 +126,15 @@ function Footwear() {
             </div>
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+            <img
+              src={item.img}
+              alt={item.name}
+            />
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+            <h3 className="head">
+              {item.name}
+            </h3>
 
             {/* Rating */}
             <div className="rating">
@@ -167,7 +143,10 @@ function Footwear() {
               <FaStar />
               <FaStar />
               <FaStar />
-              <span>({item.reviews})</span>
+
+              <span>
+                ({item.reviews || 0})
+              </span>
             </div>
 
             {/* Price */}
@@ -187,14 +166,16 @@ function Footwear() {
 
             {/* Add To Cart */}
             <button
-              className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaShoppingCart
-                style={{ marginRight: "8px" }}
-              />
-              Add to Cart
-            </button>
+  className="cartBtn"
+  onClick={(e) => {
+    e.stopPropagation();
+    addToCart(item);
+  }}
+>
+  <FaShoppingCart style={{ marginRight: "8px" }} />
+  Add to Cart
+</button>
+             
           </div>
         ))}
       </div>

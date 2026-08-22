@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./WatchesAccessories.css";
 import CategorySection4 from "./CategorySection4";
@@ -11,264 +11,205 @@ import {
 } from "react-icons/fa";
 
 function WatchesAccessories() {
-
-  // Navigation
   const navigate = useNavigate();
 
-  // 24 Products
-  const [liked, setLiked] = useState(Array(24).fill(false));
-  const [selected, setSelected] = useState(Array(24).fill(false));
+  // Products from MongoDB
+  const [products, setProducts] = useState([]);
 
+  // Wishlist
+  const [liked, setLiked] = useState([]);
+
+  // Selected cards
+  const [selected, setSelected] = useState([]);
+
+  // Loading
+  const [loading, setLoading] = useState(true);
+
+  // Error
+  const [error, setError] = useState("");
+
+  // ======================================
+  // FETCH PRODUCTS FROM MONGODB
+  // ======================================
+  useEffect(() => {
+    const fetchWatchesAccessories = async () => {
+      try {
+        setLoading(true);
+
+        const response = await fetch(
+          "http://localhost:5000/api/products/category/WatchesAccessories"
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            "Failed to fetch watches and accessories"
+          );
+        }
+
+        const data = await response.json();
+
+        console.log(
+          "Watches & Accessories fetched from MongoDB:",
+          data
+        );
+
+        setProducts(data);
+
+        setLiked(Array(data.length).fill(false));
+        setSelected(Array(data.length).fill(false));
+
+      } catch (error) {
+        console.error(
+          "Error fetching watches and accessories:",
+          error
+        );
+
+        setError(
+          "Unable to load watches and accessories."
+        );
+
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWatchesAccessories();
+  }, []);
+
+  // ======================================
+  // TOGGLE WISHLIST
+  // ======================================
   const toggleLike = (index) => {
-    const temp = [...liked];
-    temp[index] = !temp[index];
-    setLiked(temp);
+    setLiked((previous) => {
+      const temp = [...previous];
+
+      temp[index] = !temp[index];
+
+      return temp;
+    });
   };
 
+  // ======================================
+  // TOGGLE CARD
+  // ======================================
   const toggleCard = (index) => {
-    const temp = [...selected];
-    temp[index] = !temp[index];
-    setSelected(temp);
+    setSelected((previous) => {
+      const temp = [...previous];
+
+      temp[index] = !temp[index];
+
+      return temp;
+    });
   };
 
-  const products = [
-    {
-      img: "/download (55).jpeg",
-      name: "Watches",
-      price: 899,
-      oldPrice: 1999,
-      reviews: 1245,
-      discount: "55% OFF",
-    },
-    {
-      img: "/a111.jpeg",
-      name: "Vegan Wallets",
-      price: 1099,
-      oldPrice: 2499,
-      reviews: 984,
-      discount: "56% OFF",
-    },
-    {
-      img: "/a000.jpeg",
-      name: "Fresh Citrus Perfume",
-      price: 799,
-      oldPrice: 1799,
-      reviews: 876,
-      discount: "56% OFF",
-    },
-    {
-      img: "/download (54).jpeg",
-      name: "Royal Black Perfume",
-      price: 999,
-      oldPrice: 2299,
-      reviews: 752,
-      discount: "57% OFF",
-    },
-    {
-      img: "/a00.jpeg",
-      name: "Long Lasting Deodorant",
-      price: 299,
-      oldPrice: 699,
-      reviews: 1102,
-      discount: "57% OFF",
-    },
-    {
-      img: "/download (53).jpeg",
-      name: "Premium Body Perfume",
-      price: 349,
-      oldPrice: 799,
-      reviews: 689,
-      discount: "56% OFF",
-    },
-    {
-      img: "/RING.PNG",
-      name: "Ring",
-      price: 999,
-      oldPrice: 2299,
-      reviews: 893,
-      discount: "57% OFF",
-    },
-    {
-      img: "/a0.jpeg",
-      name: "Chain",
-      price: 1299,
-      oldPrice: 2899,
-      reviews: 741,
-      discount: "55% OFF",
-    },
-    {
-      img: "/a.jpeg",
-      name: "Premium Wallet",
-      price: 799,
-      oldPrice: 1799,
-      reviews: 625,
-      discount: "56% OFF",
-    },
-    {
-      img: "/b2.jpeg",
-      name: "Safety Razor",
-      price: 449,
-      oldPrice: 999,
-      reviews: 512,
-      discount: "55% OFF",
-    },
-    {
-      img: "/b1.jpeg",
-      name: "Shaving Foam",
-      price: 249,
-      oldPrice: 499,
-      reviews: 1018,
-      discount: "50% OFF",
-    },
-    {
-      img: "/b.jpeg",
-      name: "After Shave Lotion",
-      price: 349,
-      oldPrice: 799,
-      reviews: 684,
-      discount: "56% OFF",
-    },
-    {
-      img: "/z23.jpeg",
-      name: "Beard Growth Oil",
-      price: 399,
-      oldPrice: 899,
-      reviews: 937,
-      discount: "56% OFF",
-    },
-    {
-      img: "/z22.jpeg",
-      name: "Beard Styling Wax",
-      price: 299,
-      oldPrice: 699,
-      reviews: 573,
-      discount: "57% OFF",
-    },
-    {
-      img: "/z21.jpeg",
-      name: "Watch",
-      price: 299,
-      oldPrice: 699,
-      reviews: 1234,
-      discount: "57% OFF",
-    },
-    {
-      img: "/z20.jpeg",
-      name: "Charcoal Face Wash",
-      price: 349,
-      oldPrice: 799,
-      reviews: 846,
-      discount: "56% OFF",
-    },
-    {
-      img: "/z19.jpeg",
-      name: "Oil-Free Moisturizer",
-      price: 399,
-      oldPrice: 899,
-      reviews: 725,
-      discount: "56% OFF",
-    },
-    {
-      img: "/z18.jpeg",
-      name: "SPF 50 Sunscreen",
-      price: 449,
-      oldPrice: 999,
-      reviews: 678,
-      discount: "55% OFF",
-    },
-    {
-      img: "/z17.jpeg",
-      name: "Men BB Cream",
-      price: 499,
-      oldPrice: 1199,
-      reviews: 418,
-      discount: "58% OFF",
-    },
-    {
-      img: "/Men.jpeg",
-      name: "Men Concealer Stick",
-      price: 449,
-      oldPrice: 999,
-      reviews: 356,
-      discount: "55% OFF",
-    },
-    {
-      img: "/z10.jpeg",
-      name: "Men Lip Balm",
-      price: 199,
-      oldPrice: 499,
-      reviews: 589,
-      discount: "60% OFF",
-    },
-    {
-      img: "/z9.jpeg",
-      name: "Hair Styling Wax",
-      price: 399,
-      oldPrice: 899,
-      reviews: 734,
-      discount: "56% OFF",
-    },
-    {
-      img: "/z8.jpeg",
-      name: "Strong Hold Hair Gel",
-      price: 299,
-      oldPrice: 699,
-      reviews: 618,
-      discount: "57% OFF",
-    },
-    {
-      img: "/z7.jpeg",
-      name: "Hair Serum",
-      price: 499,
-      oldPrice: 1099,
-      reviews: 692,
-      discount: "55% OFF",
-    },
-  ];
+  // ======================================
+  // OPEN PRODUCT
+  // ======================================
+  const openProduct = (item, index) => {
+    toggleCard(index);
 
+    navigate("/home-decor-shopping", {
+      state: {
+        ...item,
+
+        // MongoDB image → shopping page img
+        img: `/${String(item.image || "").replace(
+          /^\/+/,
+          ""
+        )}`,
+      },
+    });
+  };
+
+  // ======================================
+  // LOADING
+  // ======================================
+  if (loading) {
+    return (
+      <>
+        <CategorySection4 />
+
+        <div
+          style={{
+            textAlign: "center",
+            padding: "60px",
+            fontSize: "20px",
+          }}
+        >
+          Loading watches & accessories...
+        </div>
+      </>
+    );
+  }
+
+  // ======================================
+  // ERROR
+  // ======================================
+  if (error) {
+    return (
+      <>
+        <CategorySection4 />
+
+        <div
+          style={{
+            textAlign: "center",
+            padding: "60px",
+            fontSize: "20px",
+            color: "red",
+          }}
+        >
+          {error}
+        </div>
+      </>
+    );
+  }
+
+  // ======================================
+  // MAIN UI
+  // ======================================
   return (
     <>
       {/* Category Section */}
       <CategorySection4 />
 
-      {/* Home Decor Banner */}
+      {/* Banner */}
       <div className="shopBanner">
-        <h1>✨ WatchesAccessories Collection ✨</h1>
+
+        <h1>
+          ✨ Watches & Accessories Collection ✨
+        </h1>
 
         <p>
-        ✨ "Complete Your Look with the Perfect Accessories."
+          ✨ "Complete Your Look with the Perfect Accessories."
         </p>
 
-        <button
-  className="shopNowBtn"
-  onClick={() =>
-    navigate("/home-decor-shopping", {
-      state: products[0],
-    })
-  }
->
-  Shop Now
-</button>
+        {/* Shop Now */}
+        {products.length > 0 && (
+          <button
+            className="shopNowBtn"
+            onClick={() => openProduct(products[0], 0)}
+          >
+            Shop Now
+          </button>
+        )}
+
       </div>
 
       {/* Products */}
       <div className="products">
+
         {products.map((item, index) => (
-   <div
-   key={index}
-   className={`cart ${
-     selected[index] ? "active" : ""
-   }`}
-   onClick={() => {
-     toggleCard(index);
- 
-     navigate("/home-decor-shopping", {
-       state: item,
-     });
-   }}
- >
-                        {/* Wishlist */}
-                        <div
+
+          <div
+            key={item._id || index}
+            className={`cart ${
+              selected[index] ? "active" : ""
+            }`}
+            onClick={() => openProduct(item, index)}
+          >
+
+            {/* Wishlist */}
+            <div
               className="wishlist"
               onClick={(e) => {
                 e.stopPropagation();
@@ -283,48 +224,80 @@ function WatchesAccessories() {
             </div>
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+            <img
+              src={`/${String(item.image || "").replace(
+                /^\/+/,
+                ""
+              )}`}
+              alt={item.name}
+            />
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+            <h3 className="head">
+              {item.name}
+            </h3>
 
             {/* Rating */}
             <div className="rating">
+
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
-              <span>({item.reviews})</span>
+
+              <span>
+                ({item.reviews || 0})
+              </span>
+
             </div>
 
             {/* Price */}
             <div className="price">
+
               <span className="newPrice">
                 ₹{item.price}
               </span>
 
-              <span className="oldPrice">
-                ₹{item.oldPrice}
-              </span>
+              {item.oldPrice && (
+                <span className="oldPrice">
+                  ₹{item.oldPrice}
+                </span>
+              )}
 
-              <span className="discount">
-                {item.discount}
-              </span>
+              {item.discount && (
+                <span className="discount">
+                  {item.discount}
+                </span>
+              )}
+
             </div>
 
             {/* Add To Cart */}
             <button
               className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+
+                console.log(
+                  "Add to cart:",
+                  item
+                );
+              }}
             >
               <FaShoppingCart
-                style={{ marginRight: "8px" }}
+                style={{
+                  marginRight: "8px",
+                }}
               />
+
               Add to Cart
             </button>
+
           </div>
+
         ))}
+
       </div>
     </>
   );

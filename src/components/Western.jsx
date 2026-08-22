@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Western.css";
 import CategorySection from "./CategorySection";
@@ -10,195 +10,343 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 
-function Western() {
+import { addToCart } from "../utils/cartApi";
 
+function Western() {
   // Navigation
   const navigate = useNavigate();
 
-  // 24 Products
-  const [liked, setLiked] = useState(Array(24).fill(false));
-  const [selected, setSelected] = useState(Array(24).fill(false));
+  // Products from MongoDB
+  const [products, setProducts] = useState([]);
+
+  // Wishlist state
+  const [liked, setLiked] = useState([]);
+
+  // Selected card state
+  const [selected, setSelected] = useState([]);
+
+  // Loading state
+  const [loading, setLoading] = useState(true);
+
+  // Error state
+  const [error, setError] = useState("");
+
+  // ======================================
+  // FETCH WESTERN PRODUCTS FROM MONGODB
+  // ======================================
+
+  useEffect(() => {
+    const fetchWestern = async () => {
+      try {
+        setLoading(true);
+
+        const response = await fetch(
+          "http://localhost:5000/api/products/category/Western"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch western products");
+        }
+
+        const data = await response.json();
+
+        console.log(
+          "Western products fetched from MongoDB:",
+          data
+        );
+
+        setProducts(data);
+
+        setLiked(
+          Array(data.length).fill(false)
+        );
+
+        setSelected(
+          Array(data.length).fill(false)
+        );
+
+      } catch (error) {
+        console.error(
+          "Error fetching western products:",
+          error
+        );
+
+        setError(
+          "Unable to load western products."
+        );
+
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWestern();
+  }, []);
+
+  // ======================================
+  // TOGGLE WISHLIST
+  // ======================================
 
   const toggleLike = (index) => {
-    const temp = [...liked];
-    temp[index] = !temp[index];
-    setLiked(temp);
+    setLiked((previous) => {
+      const temp = [...previous];
+
+      temp[index] = !temp[index];
+
+      return temp;
+    });
   };
+
+  // ======================================
+  // TOGGLE CARD
+  // ======================================
 
   const toggleCard = (index) => {
-    const temp = [...selected];
-    temp[index] = !temp[index];
-    setSelected(temp);
+    setSelected((previous) => {
+      const temp = [...previous];
+
+      temp[index] = !temp[index];
+
+      return temp;
+    });
   };
 
-   
-const products = [
-  {
-    img: "/download (13).jpeg",
-    name: "Floral Midi Dress",
-    price: 1000,
-    oldPrice: 2000,
-    reviews: 445,
-    discount: "32% OFF",
-  },
-  {
-    img: "/download (14).jpeg",
-    name: "Elegant Cocktail Dress",
-    price: 1200,
-    oldPrice: 2099,
-    reviews: 389,
-    discount: "30% OFF",
-  },
-  {
-    img: "/download (15).jpeg",
-    name: "Wine Red Strapless High-Low Gown",
-    price: 1900,
-    oldPrice: 2799,
-    reviews: 456,
-    discount: "50% OFF",
-  },
-  {
-    img: "/download (16).jpeg",
-    name: "Off-Shoulder Ruffle Dress",
-    price: 700,
-    oldPrice: 1499,
-    reviews: 112,
-    discount: "53% OFF",
-  },
-  {
-    img: "/z6.jpeg",
-    name: "Black & White Party Mini Dress",
-    price: 900,
-    oldPrice: 1900,
-    reviews: 300,
-    discount: "50% OFF",
-  },
-  {
-    img: "/z5.jpeg",
-    name: "Layered Ruffle Maxi Dress",
-    price: 1500,
-    oldPrice: 2999,
-    reviews: 178,
-    discount: "50% OFF",
-  },
-  {
-    img: "/z4.jpeg",
-    name: "Classic Black Bodycon Dress",
-    price: 1000,
-    oldPrice: 2000,
-    reviews: 440,
-    discount: "50% OFF",
-  },
-  {
-    img: "/download (17).jpeg",
-    name: "Floral Beach Maxi Dress",
-    price: 500,
-    oldPrice: 1000,
-    reviews: 400,
-    discount: "50% OFF",
-  },
+  // ======================================
+  // ADD TO CART
+  // ======================================
 
-]
+  const handleAddToCart = async (e, productId) => {
+    e.stopPropagation();
+
+    await addToCart(productId, 1);
+  };
+
+  // ======================================
+  // LOADING UI
+  // ======================================
+
+  if (loading) {
+    return (
+      <>
+        <CategorySection />
+
+        <div
+          style={{
+            textAlign: "center",
+            padding: "60px",
+            fontSize: "20px",
+          }}
+        >
+          Loading western collection...
+        </div>
+      </>
+    );
+  }
+
+  // ======================================
+  // ERROR UI
+  // ======================================
+
+  if (error) {
+    return (
+      <>
+        <CategorySection />
+
+        <div
+          style={{
+            textAlign: "center",
+            padding: "60px",
+            fontSize: "20px",
+            color: "red",
+          }}
+        >
+          {error}
+        </div>
+      </>
+    );
+  }
+
+  // ======================================
+  // MAIN UI
+  // ======================================
 
   return (
     <>
       {/* Category Section */}
+
       <CategorySection />
 
-      {/* Home Decor Banner */}
+      {/* Western Banner */}
+
       <div className="shopBanner">
-        <h1>✨ Western Collection ✨</h1>
+
+        <h1>
+          ✨ Western Collection ✨
+        </h1>
 
         <p>
-       "Twirling into Elegance"
+          "Twirling into Elegance"
         </p>
 
-        <button
-  className="shopNowBtn"
-  onClick={() =>
-    navigate("/home-decor-shopping", {
-      state: products[0],
-    })
-  }
->
-  Shop Now
-</button>
+        {/* Shop Now */}
+
+        {products.length > 0 && (
+          <button
+            className="shopNowBtn"
+            onClick={() =>
+              navigate(
+                "/home-decor-shopping",
+                {
+                  state: {
+                    ...products[0],
+
+                    img: `/${String(
+                      products[0].image || ""
+                    ).replace(/^\/+/, "")}`,
+                  },
+                }
+              )
+            }
+          >
+            Shop Now
+          </button>
+        )}
+
       </div>
 
       {/* Products */}
+
       <div className="products">
+
         {products.map((item, index) => (
-   <div
-   key={index}
-   className={`cart ${
-     selected[index] ? "active" : ""
-   }`}
-   onClick={() => {
-     toggleCard(index);
- 
-     navigate("/home-decor-shopping", {
-       state: item,
-     });
-   }}
- >
-                        {/* Wishlist */}
-                        <div
+
+          <div
+            key={item._id || index}
+            className={`cart ${
+              selected[index]
+                ? "active"
+                : ""
+            }`}
+            onClick={() => {
+
+              toggleCard(index);
+
+              navigate(
+                "/home-decor-shopping",
+                {
+                  state: {
+                    ...item,
+
+                    img: `/${String(
+                      item.image || ""
+                    ).replace(/^\/+/, "")}`,
+                  },
+                }
+              );
+
+            }}
+          >
+
+            {/* Wishlist */}
+
+            <div
               className="wishlist"
               onClick={(e) => {
+
                 e.stopPropagation();
+
                 toggleLike(index);
+
               }}
             >
+
               {liked[index] ? (
                 <FaHeart color="#123C7A" />
               ) : (
                 <FaRegHeart />
               )}
+
             </div>
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+
+            <img
+              src={`/${String(
+                item.image || ""
+              ).replace(/^\/+/, "")}`}
+              alt={item.name}
+            />
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+
+            <h3 className="head">
+              {item.name}
+            </h3>
 
             {/* Rating */}
+
             <div className="rating">
+
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
-              <span>({item.reviews})</span>
+
+              <span>
+                ({item.reviews || 0})
+              </span>
+
             </div>
 
             {/* Price */}
+
             <div className="price">
+
               <span className="newPrice">
                 ₹{item.price}
               </span>
 
-              <span className="oldPrice">
-                ₹{item.oldPrice}
-              </span>
+              {item.oldPrice && (
+                <span className="oldPrice">
+                  ₹{item.oldPrice}
+                </span>
+              )}
 
-              <span className="discount">
-                {item.discount}
-              </span>
+              {item.discount && (
+                <span className="discount">
+                  {item.discount}
+                </span>
+              )}
+
             </div>
 
             {/* Add To Cart */}
+
             <button
               className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) =>
+                handleAddToCart(
+                  e,
+                  item._id
+                )
+              }
             >
+
               <FaShoppingCart
-                style={{ marginRight: "8px" }}
+                style={{
+                  marginRight: "8px",
+                }}
               />
+
               Add to Cart
+
             </button>
+
           </div>
+
         ))}
+
       </div>
     </>
   );

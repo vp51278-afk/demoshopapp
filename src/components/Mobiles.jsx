@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Mobiles.css";
 import CategorySection5 from "./CategorySection5";
-
+import { addToCart } from "./addToCart";
 import {
   FaHeart,
   FaRegHeart,
@@ -10,86 +11,48 @@ import {
 } from "react-icons/fa";
 
 function Mobiles() {
-  const [liked, setLiked] = useState(Array(8).fill(false));
-  const [selected, setSelected] = useState(Array(8).fill(false));
+  const navigate = useNavigate();
 
+  const [products, setProducts] = useState([]);
+  const [liked, setLiked] = useState([]);
+  const [selected, setSelected] = useState([]);
+
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products/category/Mobiles")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setLiked(Array(data.length).fill(false));
+        setSelected(Array(data.length).fill(false));
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
+
+  // ==============================
+  // WISHLIST
+  // ==============================
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
+  // ==============================
+  // CARD
+  // ==============================
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
-  const products = [
-    {
-      img: "/llo.jpeg",
-      name: "Apple iPhone 15 Pro",
-      price: 129999,
-      oldPrice: 139999,
-      reviews: 2845,
-      discount: "7% OFF",
-    },
-    {
-      img: "/kkk.jpeg",
-      name: "Samsung Galaxy Watch 6",
-      price: 24999,
-      oldPrice: 29999,
-      reviews: 842,
-      discount: "17% OFF",
-    },
-    {
-      img: "/ll.jpeg",
-      name: "Apple AirPods Pro (2nd Gen)",
-      price: 22999,
-      oldPrice: 26999,
-      reviews: 1895,
-      discount: "15% OFF",
-    },
-    {
-      img: "/kk33.jpeg",
-      name: "JBL Flip 6 Speaker",
-      price: 9999,
-      oldPrice: 12999,
-      reviews: 874,
-      discount: "23% OFF",
-    },
-    {
-      img: "/kk22.jpeg",
-      name: "Mi 20000mAh Power Bank",
-      price: 1999,
-      oldPrice: 2999,
-      reviews: 3645,
-      discount: "33% OFF",
-    },
-    {
-      img: "/kk.jpeg",
-      name: "OnePlus 12 5G",
-      price: 64999,
-      oldPrice: 69999,
-      reviews: 1945,
-      discount: "7% OFF",
-    },
-    {
-      img: "/kk11.jpeg",
-      name: "Noise ColorFit Pro 5",
-      price: 4499,
-      oldPrice: 6999,
-      reviews: 2856,
-      discount: "36% OFF",
-    },
-    {
-      img: "/BOAT Store.jpeg",
-      name: "boAt Airdopes 141",
-      price: 1299,
-      oldPrice: 2999,
-      reviews: 4860,
-      discount: "57% OFF",
-    },
-  ];
 
   return (
     <>
@@ -100,9 +63,17 @@ function Mobiles() {
       <div className="products">
         {products.map((item, index) => (
           <div
-            key={index}
-            className={`cart ${selected[index] ? "active" : ""}`}
-            onClick={() => toggleCard(index)}
+            key={item._id || index}
+            className={`cart ${
+              selected[index] ? "active" : ""
+            }`}
+            onClick={() => {
+              toggleCard(index);
+
+              navigate("/home-decor-shopping", {
+                state: item,
+              });
+            }}
           >
             {/* Wishlist */}
             <div
@@ -120,10 +91,15 @@ function Mobiles() {
             </div>
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+            <img
+              src={item.image}
+              alt={item.name}
+            />
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+            <h3 className="head">
+              {item.name}
+            </h3>
 
             {/* Rating */}
             <div className="rating">
@@ -132,24 +108,38 @@ function Mobiles() {
               <FaStar />
               <FaStar />
               <FaStar className="lastStar" />
-              <span>({item.reviews})</span>
+
+              <span>
+                ({item.reviews || 0})
+              </span>
             </div>
 
             {/* Price */}
             <div className="price">
-              <span className="newPrice">₹{item.price}</span>
-              <span className="oldPrice">₹{item.oldPrice}</span>
-              <span className="discount">{item.discount}</span>
+              <span className="newPrice">
+                ₹{item.price}
+              </span>
+
+              <span className="oldPrice">
+                ₹{item.oldPrice}
+              </span>
+
+              <span className="discount">
+                {item.discount}
+              </span>
             </div>
 
-            {/* Add to Cart */}
+            {/* Add To Cart */}
             <button
-              className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaShoppingCart style={{ marginRight: "8px" }} />
-              Add to Cart
-            </button>
+  className="cartBtn"
+  onClick={(e) => {
+    e.stopPropagation();
+    addToCart(item);
+  }}
+>
+  <FaShoppingCart style={{ marginRight: "8px" }} />
+  Add to Cart
+</button>
           </div>
         ))}
       </div>

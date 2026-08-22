@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./KitchenAppliancesShopping.css";
+import { addToCart } from "./addToCart";
 
 import {
   FaStar,
@@ -12,7 +13,6 @@ import {
 } from "react-icons/fa";
 
 function KitchenAppliancesShopping() {
-
   const location = useLocation();
 
   const product = location.state;
@@ -26,59 +26,60 @@ function KitchenAppliancesShopping() {
     );
   }
 
+  // MongoDB image handling
+  const productImage = `/${String(
+    product.image || product.img || ""
+  ).replace(/^\/+/, "")}`;
+
   return (
     <>
-
       <div className="shoppingPage">
 
         {/* Left Section */}
-
         <div className="leftSection">
 
           <img
-            src={product.img}
+            src={productImage}
             alt={product.name}
             className="mainImage"
           />
 
           <div className="buttonBox">
 
-            <button className="cartButton">
-
+            {/* Add To Cart */}
+            <button
+              className="cartButton"
+              onClick={() => addToCart(product._id)}
+            >
               <FaShoppingCart />
-
               Add to Cart
-
             </button>
 
-            <button className="buyButton">
-
+            {/* Buy Now */}
+            <button
+              className="buyButton"
+              onClick={() => {
+                console.log("Buy Now:", product);
+              }}
+            >
               <FaBolt />
-
               Buy Now
-
             </button>
 
           </div>
-
         </div>
 
         {/* Right Section */}
-
         <div className="rightSection">
 
-          <h1>
+          {/* Product Name */}
+          <h1>{product.name}</h1>
 
-            {product.name}
-
-          </h1>
-
+          {/* Rating */}
           <div className="ratingBox">
 
             <span className="rating">
-
               4.5
-
             </span>
 
             <FaStar />
@@ -88,51 +89,45 @@ function KitchenAppliancesShopping() {
             <FaStar />
 
             <span>
-
-              ({product.reviews} Ratings)
-
+              ({product.reviews || 0} Ratings)
             </span>
 
           </div>
 
+          {/* Price */}
           <h2 className="price">
 
             ₹{product.price}
 
-            <del>
+            {product.oldPrice && (
+              <del>
+                ₹{product.oldPrice}
+              </del>
+            )}
 
-              ₹{product.oldPrice}
-
-            </del>
-
-            <span>
-
-              {product.discount}
-
-            </span>
+            {product.discount && (
+              <span>
+                {product.discount}
+              </span>
+            )}
 
           </h2>
 
           <hr />
 
           {/* Delivery */}
-
           <div className="deliveryBox">
 
             <h3>Delivery</h3>
 
             <p>
-
               <FaTruck style={{ color: "green" }} />
-
               Free Delivery by Tomorrow
-
             </p>
 
           </div>
 
           {/* Offers */}
-
           <div className="offerBox">
 
             <h3>Available Offers</h3>
@@ -147,8 +142,6 @@ function KitchenAppliancesShopping() {
                 ✔ No Cost EMI Available
               </li>
 
-          
-
               <li>
                 ✔ Cash on Delivery Available
               </li>
@@ -160,31 +153,21 @@ function KitchenAppliancesShopping() {
           <hr />
 
           {/* Features */}
-
           <div className="featureBox">
 
             <div>
-
               <FaTruck />
-
               <p>Fast Delivery</p>
-
             </div>
 
             <div>
-
               <FaUndo />
-
               <p>7 Days Return</p>
-
             </div>
 
             <div>
-
               <FaShieldAlt />
-
               <p>Secure Payment</p>
-
             </div>
 
           </div>
@@ -192,7 +175,6 @@ function KitchenAppliancesShopping() {
           <hr />
 
           {/* Product Details */}
-
           <div className="detailsBox">
 
             <h3>About this Item</h3>
@@ -224,12 +206,9 @@ function KitchenAppliancesShopping() {
           </div>
 
         </div>
-
       </div>
-
     </>
   );
 }
-
 
 export default KitchenAppliancesShopping;

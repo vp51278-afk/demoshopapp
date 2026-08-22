@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Women.css";
 import CategorySection from "./CategorySection";
 
@@ -9,107 +9,179 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 
+import { addToCart } from "../utils/cartApi";
+
 function Women() {
-  const [liked, setLiked] = useState(Array(8).fill(false));
-  const [selected, setSelected] = useState(Array(8).fill(false));
+  // Products from MongoDB
+  const [products, setProducts] = useState([]);
+
+  // Wishlist state
+  const [liked, setLiked] = useState([]);
+
+  // Selected card state
+  const [selected, setSelected] = useState([]);
+
+  // Loading state
+  const [loading, setLoading] = useState(true);
+
+  // Error state
+  const [error, setError] = useState("");
+
+  // ======================================
+  // FETCH WOMEN PRODUCTS FROM MONGODB
+  // ======================================
+
+  useEffect(() => {
+    const fetchWomen = async () => {
+      try {
+        setLoading(true);
+
+        const response = await fetch(
+          "http://localhost:5000/api/products/category/Women"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch women products");
+        }
+
+        const data = await response.json();
+
+        console.log(
+          "Women products fetched from MongoDB:",
+          data
+        );
+
+        setProducts(data);
+
+        setLiked(Array(data.length).fill(false));
+
+        setSelected(Array(data.length).fill(false));
+      } catch (error) {
+        console.error(
+          "Error fetching women products:",
+          error
+        );
+
+        setError("Unable to load women products.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWomen();
+  }, []);
+
+  // ======================================
+  // TOGGLE WISHLIST
+  // ======================================
 
   const toggleLike = (index) => {
-    const temp = [...liked];
-    temp[index] = !temp[index];
-    setLiked(temp);
+    setLiked((previous) => {
+      const temp = [...previous];
+
+      temp[index] = !temp[index];
+
+      return temp;
+    });
   };
+
+  // ======================================
+  // TOGGLE CARD
+  // ======================================
 
   const toggleCard = (index) => {
-    const temp = [...selected];
-    temp[index] = !temp[index];
-    setSelected(temp);
+    setSelected((previous) => {
+      const temp = [...previous];
+
+      temp[index] = !temp[index];
+
+      return temp;
+    });
   };
 
-  const products = [
-    {
-      img: "/download (2).jpeg",
-      name: "Embroidered Peplum Sharara Set",
-      price: 1200,
-      oldPrice: 2499,
-      reviews: 245,
-      discount: "52% OFF",
-    },
-    {
-      img: "/w.jpeg",
-      name: "Indo-Western Fusion Ensemble",
-      price: 1000,
-      oldPrice: 1999,
-      reviews: 189,
-      discount: "50% OFF",
-    },
-    {
-      img: "/download (4).jpeg",
-      name: "High-waist, Polka-dot Flared Midi Skirt",
-      price: 900,
-      oldPrice: 1799,
-      reviews: 156,
-      discount: "50% OFF",
-    },
-    {
-      img: "/z2.jpeg",
-      name: "Black & White Off-Shoulder Mini Dress",
-      price: 700,
-      oldPrice: 1499,
-      reviews: 312,
-      discount: "53% OFF",
-    },
-    {
-      img: "/download (3).jpeg",
-      name: "Indo-Western Jacket Set",
-      price: 1000,
-      oldPrice: 1999,
-      reviews: 213,
-      discount: "50% OFF",
-    },
-    {
-      img: "/download (6).jpeg",
-      name: "Gold Farshi Palazzo Set",
-      price: 1500,
-      oldPrice: 2999,
-      reviews: 178,
-      discount: "50% OFF",
-    },
-    {
-      img: "/z.jpeg",
-      name: "Trending Co-ord Set",
-      price: 1000,
-      oldPrice: 1999,
-      reviews: 145,
-      discount: "50% OFF",
-    },
-    {
-      img: "/z1.jpeg",
-      name: "Stunning Kurti",
-      price: 900,
-      oldPrice: 1799,
-      reviews: 298,
-      discount: "50% OFF",
-    },
-  ];
+  // ======================================
+  // ADD TO CART
+  // ======================================
+
+  const handleAddToCart = async (e, productId) => {
+    e.stopPropagation();
+
+    await addToCart(productId, 1);
+  };
+
+  // ======================================
+  // LOADING UI
+  // ======================================
+
+  if (loading) {
+    return (
+      <>
+        <CategorySection />
+
+        <div
+          style={{
+            textAlign: "center",
+            padding: "60px",
+            fontSize: "20px",
+          }}
+        >
+          Loading women collection...
+        </div>
+      </>
+    );
+  }
+
+  // ======================================
+  // ERROR UI
+  // ======================================
+
+  if (error) {
+    return (
+      <>
+        <CategorySection />
+
+        <div
+          style={{
+            textAlign: "center",
+            padding: "60px",
+            fontSize: "20px",
+            color: "red",
+          }}
+        >
+          {error}
+        </div>
+      </>
+    );
+  }
+
+  // ======================================
+  // MAIN UI
+  // ======================================
 
   return (
     <>
       {/* Category Section */}
+
       <CategorySection />
 
       {/* Products */}
+
       <div className="products">
         {products.map((item, index) => (
           <div
-            key={index}
-            className={`cart ${selected[index] ? "active" : ""}`}
+            key={item._id || index}
+            className={`cart ${
+              selected[index] ? "active" : ""
+            }`}
             onClick={() => toggleCard(index)}
           >
             {/* Wishlist */}
+
             <div
               className="wishlist"
               onClick={(e) => {
                 e.stopPropagation();
+
                 toggleLike(index);
               }}
             >
@@ -121,36 +193,68 @@ function Women() {
             </div>
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+
+            <img
+              src={`/${String(
+                item.image || ""
+              ).replace(/^\/+/, "")}`}
+              alt={item.name}
+            />
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+
+            <h3 className="head">
+              {item.name}
+            </h3>
 
             {/* Rating */}
+
             <div className="rating">
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar />
               <FaStar className="lastStar" />
-              <span>({item.reviews})</span>
+
+              <span>
+                ({item.reviews || 0})
+              </span>
             </div>
 
             {/* Price */}
+
             <div className="price">
-              <span className="newPrice">₹{item.price}</span>
+              <span className="newPrice">
+                ₹{item.price}
+              </span>
 
-              <span className="oldPrice">₹{item.oldPrice}</span>
+              {item.oldPrice && (
+                <span className="oldPrice">
+                  ₹{item.oldPrice}
+                </span>
+              )}
 
-              <span className="discount">{item.discount}</span>
+              {item.discount && (
+                <span className="discount">
+                  {item.discount}
+                </span>
+              )}
             </div>
 
-            {/* Add to Cart */}
+            {/* Add To Cart */}
+
             <button
               className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) =>
+                handleAddToCart(e, item._id)
+              }
             >
-              <FaShoppingCart style={{ marginRight: "8px" }} />
+              <FaShoppingCart
+                style={{
+                  marginRight: "8px",
+                }}
+              />
+
               Add to Cart
             </button>
           </div>

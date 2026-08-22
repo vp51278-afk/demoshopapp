@@ -13,8 +13,10 @@ import {
 
 function FruitsShopping() {
   const location = useLocation();
+
   const product = location.state;
 
+  // Safety Check
   if (!product) {
     return (
       <h2 style={{ textAlign: "center", marginTop: "100px" }}>
@@ -36,6 +38,7 @@ function FruitsShopping() {
         />
 
         <div className="buttonBox">
+
           <button className="cartButton">
             <FaShoppingCart />
             Add to Cart
@@ -45,17 +48,22 @@ function FruitsShopping() {
             <FaBolt />
             Buy Now
           </button>
-        </div>
 
+        </div>
       </div>
 
       {/* Right Section */}
       <div className="rightSection">
 
+        {/* Product Name */}
         <h1>{product.name}</h1>
 
+        {/* Rating */}
         <div className="ratingBox">
-          <span className="rating">4.5</span>
+
+          <span className="rating">
+            4.5
+          </span>
 
           <FaStar />
           <FaStar />
@@ -63,49 +71,73 @@ function FruitsShopping() {
           <FaStar />
           <FaStar />
 
-          <span>({product.reviews} Ratings)</span>
+          <span>
+            ({product.reviews || 0} Ratings)
+          </span>
+
         </div>
 
-        {/* Updated Price Section */}
+        {/* Price */}
         <div className="price">
 
           <span className="newPrice">
             ₹{product.price}
           </span>
 
-          <del className="oldPrice">
-            ₹{product.oldPrice}
-          </del>
+          {product.oldPrice && (
+            <del className="oldPrice">
+              ₹{product.oldPrice}
+            </del>
+          )}
 
-          <span className="discount">
-            {product.discount}
-          </span>
+          {product.discount && (
+            <span className="discount">
+              {product.discount}
+            </span>
+          )}
 
         </div>
 
         <hr />
 
+        {/* Delivery */}
         <div className="deliveryBox">
+
           <h3>Delivery</h3>
 
           <p>
             <FaTruck style={{ color: "green" }} />
             Free Delivery by Tomorrow
           </p>
+
         </div>
 
+        {/* Offers */}
         <div className="offerBox">
+
           <h3>Available Offers</h3>
 
           <ul>
-            <li>✔ Bank Offer: 10% Instant Discount</li>
-            <li>✔ No Cost EMI Available</li>
-            <li>✔ Cash on Delivery Available</li>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
           </ul>
+
         </div>
 
         <hr />
 
+        {/* Features */}
         <div className="featureBox">
 
           <div>
@@ -127,16 +159,33 @@ function FruitsShopping() {
 
         <hr />
 
+        {/* Product Details */}
         <div className="detailsBox">
 
           <h3>About this Item</h3>
 
           <ul>
-            <li>Premium Quality Product</li>
-            <li>Fresh & Naturally Selected</li>
-            <li>Rich in Vitamins & Minerals</li>
-            <li>Hygienically Packed</li>
-            <li>Best for Daily Healthy Diet</li>
+
+            <li>
+              Premium Quality Fresh Fruits
+            </li>
+
+            <li>
+              Fresh & Naturally Selected
+            </li>
+
+            <li>
+              Rich in Vitamins & Minerals
+            </li>
+
+            <li>
+              Hygienically Packed
+            </li>
+
+            <li>
+              Best for Daily Healthy Diet
+            </li>
+
           </ul>
 
         </div>

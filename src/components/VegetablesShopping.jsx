@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./VegetablesShopping.css";
-
+import { addToCart } from "./addToCart";
 import {
   FaStar,
   FaShoppingCart,
@@ -13,8 +13,10 @@ import {
 
 function VegetablesShopping() {
   const location = useLocation();
+
   const product = location.state;
 
+  // Safety Check
   if (!product) {
     return (
       <h2 style={{ textAlign: "center", marginTop: "100px" }}>
@@ -23,39 +25,65 @@ function VegetablesShopping() {
     );
   }
 
+  // MongoDB image handling
+  const productImage = `/${String(
+    product.image || product.img || ""
+  ).replace(/^\/+/, "")}`;
+
   return (
     <div className="shoppingPage">
 
-      {/* Left Section */}
+      {/* ================= LEFT SECTION ================= */}
+
       <div className="leftSection">
 
         <img
-          src={product.img}
+          src={productImage}
           alt={product.name}
           className="mainImage"
         />
 
         <div className="buttonBox">
-          <button className="cartButton">
-            <FaShoppingCart />
-            Add to Cart
-          </button>
 
-          <button className="buyButton">
+          {/* Add To Cart */}
+          <button
+  className="cartButton"
+  onClick={() => addToCart(product)}
+>
+  <FaShoppingCart />
+  Add to Cart
+</button>
+
+          {/* Buy Now */}
+          <button
+            className="buyButton"
+            onClick={() => {
+              console.log("Buy Now:", product);
+            }}
+          >
             <FaBolt />
             Buy Now
           </button>
+
         </div>
 
       </div>
 
-      {/* Right Section */}
+      {/* ================= RIGHT SECTION ================= */}
+
       <div className="rightSection">
 
-        <h1>{product.name}</h1>
+        {/* Product Name */}
+        <h1>
+          {product.name}
+        </h1>
 
+        {/* Rating */}
         <div className="ratingBox">
-          <span className="rating">4.5</span>
+
+          <span className="rating">
+            4.5
+          </span>
 
           <FaStar />
           <FaStar />
@@ -63,48 +91,77 @@ function VegetablesShopping() {
           <FaStar />
           <FaStar />
 
-          <span>({product.reviews} Ratings)</span>
+          <span>
+            ({product.reviews || 0} Ratings)
+          </span>
+
         </div>
 
-        {/* Updated Price Section */}
+        {/* ================= PRICE ================= */}
+
         <div className="price">
 
           <span className="newPrice">
             ₹{product.price}
           </span>
 
-          <del className="oldPrice">
-            ₹{product.oldPrice}
-          </del>
+          {product.oldPrice && (
+            <del className="oldPrice">
+              ₹{product.oldPrice}
+            </del>
+          )}
 
-          <span className="discount">
-            {product.discount}
-          </span>
+          {product.discount && (
+            <span className="discount">
+              {product.discount}
+            </span>
+          )}
 
         </div>
 
         <hr />
 
+        {/* ================= DELIVERY ================= */}
+
         <div className="deliveryBox">
+
           <h3>Delivery</h3>
 
           <p>
             <FaTruck style={{ color: "green" }} />
+
             Free Delivery by Tomorrow
           </p>
+
         </div>
 
+        {/* ================= OFFERS ================= */}
+
         <div className="offerBox">
+
           <h3>Available Offers</h3>
 
           <ul>
-            <li>✔ Bank Offer: 10% Instant Discount</li>
-            <li>✔ No Cost EMI Available</li>
-            <li>✔ Cash on Delivery Available</li>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
           </ul>
+
         </div>
 
         <hr />
+
+        {/* ================= FEATURES ================= */}
 
         <div className="featureBox">
 
@@ -127,16 +184,34 @@ function VegetablesShopping() {
 
         <hr />
 
+        {/* ================= PRODUCT DETAILS ================= */}
+
         <div className="detailsBox">
 
           <h3>About this Item</h3>
 
           <ul>
-            <li>Premium Quality Product</li>
-            <li>Fresh & Naturally Selected</li>
-            <li>Rich in Vitamins & Minerals</li>
-            <li>Hygienically Packed</li>
-            <li>Best for Daily Healthy Diet</li>
+
+            <li>
+              Premium Quality Product
+            </li>
+
+            <li>
+              Fresh & Naturally Selected
+            </li>
+
+            <li>
+              Rich in Vitamins & Minerals
+            </li>
+
+            <li>
+              Hygienically Packed
+            </li>
+
+            <li>
+              Best for Daily Healthy Diet
+            </li>
+
           </ul>
 
         </div>

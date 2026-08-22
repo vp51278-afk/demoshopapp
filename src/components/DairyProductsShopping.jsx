@@ -15,6 +15,7 @@ function DairyProductsShopping() {
   const location = useLocation();
   const product = location.state;
 
+  // Safety Check
   if (!product) {
     return (
       <h2 style={{ textAlign: "center", marginTop: "100px" }}>
@@ -36,6 +37,7 @@ function DairyProductsShopping() {
         />
 
         <div className="buttonBox">
+
           <button className="cartButton">
             <FaShoppingCart />
             Add to Cart
@@ -45,8 +47,8 @@ function DairyProductsShopping() {
             <FaBolt />
             Buy Now
           </button>
-        </div>
 
+        </div>
       </div>
 
       {/* Right Section */}
@@ -54,8 +56,12 @@ function DairyProductsShopping() {
 
         <h1>{product.name}</h1>
 
+        {/* Rating */}
         <div className="ratingBox">
-          <span className="rating">4.5</span>
+
+          <span className="rating">
+            4.5
+          </span>
 
           <FaStar />
           <FaStar />
@@ -63,10 +69,13 @@ function DairyProductsShopping() {
           <FaStar />
           <FaStar />
 
-          <span>({product.reviews} Ratings)</span>
+          <span>
+            ({product.reviews} Ratings)
+          </span>
+
         </div>
 
-        {/* Updated Price Section */}
+        {/* Price */}
         <div className="price">
 
           <span className="newPrice">
@@ -85,27 +94,48 @@ function DairyProductsShopping() {
 
         <hr />
 
+        {/* Delivery */}
         <div className="deliveryBox">
+
           <h3>Delivery</h3>
 
           <p>
             <FaTruck style={{ color: "green" }} />
             Free Delivery by Tomorrow
           </p>
+
         </div>
 
+        {/* Offers */}
         <div className="offerBox">
+
           <h3>Available Offers</h3>
 
           <ul>
-            <li>✔ Bank Offer: 10% Instant Discount</li>
-            <li>✔ No Cost EMI Available</li>
-            <li>✔ Cash on Delivery Available</li>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Free Delivery on Orders above ₹499
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
           </ul>
+
         </div>
 
         <hr />
 
+        {/* Features */}
         <div className="featureBox">
 
           <div>
@@ -127,16 +157,33 @@ function DairyProductsShopping() {
 
         <hr />
 
+        {/* Product Details */}
         <div className="detailsBox">
 
           <h3>About this Item</h3>
 
           <ul>
-            <li>Premium Quality Product</li>
-            <li>Fresh & Naturally Selected</li>
-            <li>Rich in Vitamins & Minerals</li>
-            <li>Hygienically Packed</li>
-            <li>Best for Daily Healthy Diet</li>
+
+            <li>
+              Premium Quality Dairy Product
+            </li>
+
+            <li>
+              Fresh & Naturally Selected
+            </li>
+
+            <li>
+              Rich in Essential Nutrients
+            </li>
+
+            <li>
+              Hygienically Packed
+            </li>
+
+            <li>
+              Suitable for Daily Consumption
+            </li>
+
           </ul>
 
         </div>

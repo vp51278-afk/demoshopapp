@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Beauty.css";
 import CategorySection4 from "./CategorySection4";
-
+import { addToCart } from "./addToCart";
 import {
   FaHeart,
   FaRegHeart,
@@ -10,149 +11,445 @@ import {
 } from "react-icons/fa";
 
 function Beauty() {
-  const [liked, setLiked] = useState(Array(8).fill(false));
-  const [selected, setSelected] = useState(Array(8).fill(false));
+  const navigate = useNavigate();
+
+  // Products
+  const [products, setProducts] = useState([]);
+
+  // Wishlist
+  const [liked, setLiked] = useState([]);
+
+  // Selected cards
+  const [selected, setSelected] = useState([]);
+
+  // Loading & Error
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // Cart message
+  const [cartMessage, setCartMessage] = useState("");
+
+  // Add to cart loading
+  const [cartLoading, setCartLoading] = useState(null);
+
+
+  // =====================================================
+  // FETCH BEAUTY PRODUCTS FROM MONGODB
+  // =====================================================
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/products/category/Beauty"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        const data = await response.json();
+
+        console.log("Fetched Beauty Products:", data);
+
+        setProducts(data);
+
+        setLiked(Array(data.length).fill(false));
+
+        setSelected(Array(data.length).fill(false));
+
+      } catch (err) {
+
+        console.error(err);
+
+        setError(
+          "Unable to load Beauty products."
+        );
+
+      } finally {
+
+        setLoading(false);
+
+      }
+    };
+
+    fetchProducts();
+
+  }, []);
+
+
+  // =====================================================
+  // ADD TO CART
+  // =====================================================
+
+  const handleAddToCart = async (productId) => {
+
+    // Get JWT token
+    const token = localStorage.getItem("token");
+
+    // Login check
+    if (!token) {
+      alert(
+        "Please login first to add products to cart."
+      );
+      return;
+    }
+
+    // Product ID check
+    if (!productId) {
+      alert("Product ID not found.");
+      return;
+    }
+
+    try {
+
+      setCartLoading(productId);
+
+      setCartMessage("");
+
+      const response = await fetch(
+        "http://localhost:5000/api/cart/add",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+
+          body: JSON.stringify({
+            productId: productId,
+            quantity: 1,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+
+      // =================================================
+      // SUCCESS
+      // =================================================
+
+      if (response.ok) {
+
+        console.log(
+          "Cart updated:",
+          data
+        );
+
+        setCartMessage(
+          "Product added to cart!"
+        );
+
+        setTimeout(() => {
+          setCartMessage("");
+        }, 2000);
+
+      }
+
+
+      // =================================================
+      // TOKEN EXPIRED
+      // =================================================
+
+      else if (response.status === 401) {
+
+        localStorage.removeItem("token");
+
+        localStorage.removeItem("user");
+
+        alert(
+          "Your session has expired. Please login again."
+        );
+
+      }
+
+
+      // =================================================
+      // OTHER ERROR
+      // =================================================
+
+      else {
+
+        alert(
+          data.message ||
+          "Unable to add product to cart."
+        );
+
+      }
+
+    } catch (error) {
+
+      console.error(
+        "Add to cart error:",
+        error
+      );
+
+      alert(
+        "Unable to connect to server."
+      );
+
+    } finally {
+
+      setCartLoading(null);
+
+    }
+  };
+
+
+  // =====================================================
+  // TOGGLE WISHLIST
+  // =====================================================
 
   const toggleLike = (index) => {
+
     const temp = [...liked];
+
     temp[index] = !temp[index];
+
     setLiked(temp);
+
   };
 
+
+  // =====================================================
+  // TOGGLE CARD
+  // =====================================================
+
   const toggleCard = (index) => {
+
     const temp = [...selected];
+
     temp[index] = !temp[index];
+
     setSelected(temp);
+
   };
-  const products = [
-    {
-      img: "/be1.jpeg",
-      name: "Premium Cotton T-Shirt",
-      price: 699,
-      oldPrice: 1399,
-      reviews: 445,
-      discount: "50% OFF",
-    },
-    {
-      img: "/be2.jpeg",
-      name: "Slim Fit Casual Shirt",
-      price: 999,
-      oldPrice: 1999,
-      reviews: 389,
-      discount: "50% OFF",
-    },
-    {
-      img: "/be3.jpeg",
-      name: "Regular Fit Blue Jeans",
-      price: 1299,
-      oldPrice: 2599,
-      reviews: 456,
-      discount: "50% OFF",
-    },
-    {
-      img: "/be4.jpeg",
-      name: "Stylish Denim Jacket",
-      price: 1799,
-      oldPrice: 3599,
-      reviews: 312,
-      discount: "50% OFF",
-    },
-    {
-      img: "/be5.jpeg",
-      name: "Printed Hoodie",
-      price: 1499,
-      oldPrice: 2999,
-      reviews: 300,
-      discount: "50% OFF",
-    },
-    {
-      img: "/be6.jpeg",
-      name: "Formal Cotton Trouser",
-      price: 899,
-      oldPrice: 1799,
-      reviews: 178,
-      discount: "50% OFF",
-    },
-    {
-      img: "/be7.jpeg",
-      name: "Classic Formal Blazer",
-      price: 3799,
-      oldPrice: 4999,
-      reviews: 440,
-      discount: "24% OFF",
-    },
-    {
-      img: "/shoes.jpeg",
-      name: "Casual Sneakers",
-      price: 1699,
-      oldPrice: 3399,
-      reviews: 400,
-      discount: "50% OFF",
-    },
-  ];
+
+
+  // =====================================================
+  // LOADING
+  // =====================================================
+
+  if (loading) {
+
+    return (
+      <>
+        <CategorySection4 />
+
+        <div className="shopBanner">
+
+          <h1>
+            Loading Beauty Products...
+          </h1>
+
+        </div>
+      </>
+    );
+  }
+
+
+  // =====================================================
+  // ERROR
+  // =====================================================
+
+  if (error) {
+
+    return (
+      <>
+        <CategorySection4 />
+
+        <div className="shopBanner">
+
+          <h1>
+            {error}
+          </h1>
+
+        </div>
+      </>
+    );
+  }
+
+
+  // =====================================================
+  // MAIN UI
+  // =====================================================
 
   return (
     <>
+
       {/* Category Section */}
+
       <CategorySection4 />
 
+
+      {/* Cart Success Message */}
+
+      {cartMessage && (
+
+        <div className="cart-message">
+
+          {cartMessage}
+
+        </div>
+
+      )}
+
+
       {/* Products */}
+
       <div className="products">
+
         {products.map((item, index) => (
+
           <div
-            key={index}
-            className={`cart ${selected[index] ? "active" : ""}`}
-            onClick={() => toggleCard(index)}
+            key={
+              item._id || index
+            }
+
+            className={`cart ${
+              selected[index]
+                ? "active"
+                : ""
+            }`}
+
+            onClick={() => {
+
+              toggleCard(index);
+
+              navigate(
+                "/home-decor-shopping",
+                {
+                  state: item,
+                }
+              );
+
+            }}
           >
+
+
             {/* Wishlist */}
+
             <div
               className="wishlist"
+
               onClick={(e) => {
+
                 e.stopPropagation();
+
                 toggleLike(index);
+
               }}
             >
+
               {liked[index] ? (
-                <FaHeart color="#123C7A" />
+
+                <FaHeart
+                  color="#123C7A"
+                />
+
               ) : (
+
                 <FaRegHeart />
+
               )}
+
             </div>
+
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+
+            <img
+              src={
+                item.image ||
+                item.img
+              }
+
+              alt={item.name}
+            />
+
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+
+            <h3 className="head">
+
+              {item.name}
+
+            </h3>
+
 
             {/* Rating */}
+
             <div className="rating">
+
               <FaStar />
+
               <FaStar />
+
               <FaStar />
+
               <FaStar />
-              <FaStar className="lastStar" />
-              <span>({item.reviews})</span>
+
+              <FaStar
+                className="lastStar"
+              />
+
+              <span>
+
+                (
+                {item.reviews || 0}
+                )
+
+              </span>
+
             </div>
+
 
             {/* Price */}
+
             <div className="price">
-              <span className="newPrice">₹{item.price}</span>
-              <span className="oldPrice">₹{item.oldPrice}</span>
-              <span className="discount">{item.discount}</span>
+
+              <span className="newPrice">
+
+                ₹{item.price}
+
+              </span>
+
+
+              <span className="oldPrice">
+
+                ₹{item.oldPrice}
+
+              </span>
+
+
+              <span className="discount">
+
+                {item.discount}
+
+              </span>
+
             </div>
 
-            {/* Add to Cart */}
+
+            {/* Add To Cart */}
             <button
-              className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaShoppingCart style={{ marginRight: "8px" }} />
-              Add to Cart
-            </button>
+  className="cartBtn"
+  onClick={(e) => {
+    e.stopPropagation();
+    addToCart(item);
+  }}
+>
+  <FaShoppingCart style={{ marginRight: "8px" }} />
+  Add to Cart
+</button>
           </div>
+
         ))}
+
       </div>
+
     </>
   );
 }

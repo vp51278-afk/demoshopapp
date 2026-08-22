@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Men.css";
 import CategorySection1 from "./CategorySection1";
-
+import { addToCart } from "./addToCart";
 import {
   FaHeart,
   FaRegHeart,
@@ -10,106 +11,84 @@ import {
 } from "react-icons/fa";
 
 function Men() {
-  const [liked, setLiked] = useState(Array(8).fill(false));
-  const [selected, setSelected] = useState(Array(8).fill(false));
+  const navigate = useNavigate();
 
+  const [products, setProducts] = useState([]);
+  const [liked, setLiked] = useState([]);
+  const [selected, setSelected] = useState([]);
+
+  // ==============================
+  // FETCH PRODUCTS FROM MONGODB
+  // ==============================
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products/category/Men")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+
+        setLiked(Array(data.length).fill(false));
+        setSelected(Array(data.length).fill(false));
+      })
+      .catch((error) => {
+        console.error("Error fetching Men products:", error);
+      });
+  }, []);
+
+  // ==============================
+  // WISHLIST
+  // ==============================
   const toggleLike = (index) => {
     const temp = [...liked];
+
     temp[index] = !temp[index];
+
     setLiked(temp);
   };
 
+  // ==============================
+  // CARD
+  // ==============================
   const toggleCard = (index) => {
     const temp = [...selected];
+
     temp[index] = !temp[index];
+
     setSelected(temp);
   };
 
-  const products = [
-    {
-      img: "/jj1.jpeg",
-      name: "Aesthetic Streetwear Set",
-      price: 1000,
-      oldPrice: 2000,
-      reviews: 145,
-      discount: "50% OFF",
-    },
-    {
-      img: "/jj2.jpeg",
-      name: "Blue-Black check shirt with pant",
-      price: 800,
-      oldPrice: 1099,
-      reviews: 200,
-      discount: "11% OFF",
-    },
-    {
-      img: "/jj.jpeg",
-      name: "Denim shirt with black pant",
-      price: 900,
-      oldPrice: 1799,
-      reviews: 256,
-      discount: "50% OFF",
-    },
-    {
-      img: "/jhk.jpeg",
-      name: "Blue Striped Shirt",
-      price: 700,
-      oldPrice: 1499,
-      reviews: 312,
-      discount: "53% OFF",
-    },
-    {
-      img: "/download (8).jpeg",
-      name: "Set",
-      price: 1000,
-      oldPrice: 1999,
-      reviews: 213,
-      discount: "50% OFF",
-    },
-    {
-      img: "/hj.jpeg",
-      name: "Formal Double Breasted Brown Suit Combination",
-      price: 1500,
-      oldPrice: 2999,
-      reviews: 270,
-      discount: "50% OFF",
-    },
-    {
-      img: "/op1.jpeg",
-      name: "Formal look",
-      price: 1300,
-      oldPrice: 1999,
-      reviews: 200,
-      discount: "20% OFF",
-    },
-    {
-      img: "/op.jpeg",
-      name: "Men’s Outfit",
-      price: 900,
-      oldPrice: 1799,
-      reviews: 298,
-      discount: "50% OFF",
-    },
-  ];
-
   return (
     <>
-      {/* Category Section1 */}
+      {/* Category Section */}
       <CategorySection1 />
 
       {/* Products */}
       <div className="products">
         {products.map((item, index) => (
           <div
-            key={index}
-            className={`cart ${selected[index] ? "active" : ""}`}
-            onClick={() => toggleCard(index)}
+            key={item._id || index}
+            className={`cart ${
+              selected[index] ? "active" : ""
+            }`}
+            onClick={() => {
+              toggleCard(index);
+
+              navigate("/home-decor-shopping", {
+                state: item,
+              });
+            }}
           >
             {/* Wishlist */}
             <div
               className="wishlist"
               onClick={(e) => {
                 e.stopPropagation();
+
                 toggleLike(index);
               }}
             >
@@ -121,10 +100,15 @@ function Men() {
             </div>
 
             {/* Product Image */}
-            <img src={item.img} alt={item.name} />
+            <img
+              src={item.image}
+              alt={item.name}
+            />
 
             {/* Product Name */}
-            <h3 className="head">{item.name}</h3>
+            <h3 className="head">
+              {item.name}
+            </h3>
 
             {/* Rating */}
             <div className="rating">
@@ -133,26 +117,38 @@ function Men() {
               <FaStar />
               <FaStar />
               <FaStar className="lastStar" />
-              <span>({item.reviews})</span>
+
+              <span>
+                ({item.reviews || 0})
+              </span>
             </div>
 
             {/* Price */}
             <div className="price">
-              <span className="newPrice">₹{item.price}</span>
+              <span className="newPrice">
+                ₹{item.price}
+              </span>
 
-              <span className="oldPrice">₹{item.oldPrice}</span>
+              <span className="oldPrice">
+                ₹{item.oldPrice}
+              </span>
 
-              <span className="discount">{item.discount}</span>
+              <span className="discount">
+                {item.discount}
+              </span>
             </div>
 
             {/* Add to Cart */}
             <button
-              className="cartBtn"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaShoppingCart style={{ marginRight: "8px" }} />
-              Add to Cart
-            </button>
+  className="cartBtn"
+  onClick={(e) => {
+    e.stopPropagation();
+    addToCart(item);
+  }}
+>
+  <FaShoppingCart style={{ marginRight: "8px" }} />
+  Add to Cart
+</button>
           </div>
         ))}
       </div>

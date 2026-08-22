@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./TrousersShopping.css";
-
+import { addToCart } from "./addToCart";
 import {
   FaStar,
   FaShoppingCart,
@@ -12,7 +12,6 @@ import {
 } from "react-icons/fa";
 
 function TrousersShopping() {
-
   const location = useLocation();
 
   const product = location.state;
@@ -26,13 +25,45 @@ function TrousersShopping() {
     );
   }
 
+  // ======================================
+  // ADD TO CART
+  // ======================================
+  const addToCart = () => {
+    const existingCart =
+      JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existingProductIndex = existingCart.findIndex(
+      (cartItem) => cartItem._id === product._id
+    );
+
+    if (existingProductIndex !== -1) {
+      existingCart[existingProductIndex].quantity += 1;
+    } else {
+      existingCart.push({
+        ...product,
+        img:
+          product.img ||
+          `/${String(product.image || "").replace(
+            /^\/+/,
+            ""
+          )}`,
+        quantity: 1,
+      });
+    }
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(existingCart)
+    );
+
+    alert(`${product.name} added to cart!`);
+  };
+
   return (
     <>
-
       <div className="shoppingPage">
 
         {/* Left Section */}
-
         <div className="leftSection">
 
           <img
@@ -43,14 +74,16 @@ function TrousersShopping() {
 
           <div className="buttonBox">
 
-            <button className="cartButton">
+            {/* Add To Cart */}
+            <button
+  className="cartButton"
+  onClick={() => addToCart(product)}
+>
+  <FaShoppingCart />
+  Add to Cart
+</button>
 
-              <FaShoppingCart />
-
-              Add to Cart
-
-            </button>
-
+            {/* Buy Now */}
             <button className="buyButton">
 
               <FaBolt />
@@ -64,21 +97,17 @@ function TrousersShopping() {
         </div>
 
         {/* Right Section */}
-
         <div className="rightSection">
 
           <h1>
-
             {product.name}
-
           </h1>
 
+          {/* Rating */}
           <div className="ratingBox">
 
             <span className="rating">
-
               4.5
-
             </span>
 
             <FaStar />
@@ -88,51 +117,46 @@ function TrousersShopping() {
             <FaStar />
 
             <span>
-
-              ({product.reviews} Ratings)
-
+              ({product.reviews || 0} Ratings)
             </span>
 
           </div>
 
+          {/* Price */}
           <h2 className="price">
 
             ₹{product.price}
 
-            <del>
+            {product.oldPrice && (
+              <del>
+                ₹{product.oldPrice}
+              </del>
+            )}
 
-              ₹{product.oldPrice}
-
-            </del>
-
-            <span>
-
-              {product.discount}
-
-            </span>
+            {product.discount && (
+              <span>
+                {product.discount}
+              </span>
+            )}
 
           </h2>
 
           <hr />
 
           {/* Delivery */}
-
           <div className="deliveryBox">
 
             <h3>Delivery</h3>
 
             <p>
-
               <FaTruck style={{ color: "green" }} />
 
               Free Delivery by Tomorrow
-
             </p>
 
           </div>
 
           {/* Offers */}
-
           <div className="offerBox">
 
             <h3>Available Offers</h3>
@@ -147,8 +171,6 @@ function TrousersShopping() {
                 ✔ No Cost EMI Available
               </li>
 
-           
-
               <li>
                 ✔ Cash on Delivery Available
               </li>
@@ -160,7 +182,6 @@ function TrousersShopping() {
           <hr />
 
           {/* Features */}
-
           <div className="featureBox">
 
             <div>
@@ -192,7 +213,6 @@ function TrousersShopping() {
           <hr />
 
           {/* Product Details */}
-
           <div className="detailsBox">
 
             <h3>About this Item</h3>
@@ -208,11 +228,11 @@ function TrousersShopping() {
               </li>
 
               <li>
-                Best for Home Decoration
+                Comfortable & Perfect Fit
               </li>
 
               <li>
-                Easy to Use & Maintain
+                Easy to Wash & Maintain
               </li>
 
               <li>
@@ -226,7 +246,6 @@ function TrousersShopping() {
         </div>
 
       </div>
-
     </>
   );
 }

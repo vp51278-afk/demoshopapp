@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "./JacketsShopping.css";
 
+import { addToCart } from "./addToCart";
+
 import {
   FaStar,
   FaShoppingCart,
@@ -26,59 +28,65 @@ function JacketsShopping() {
     );
   }
 
+  // MongoDB image handling
+  const productImage = `/${String(
+    product.image || product.img || ""
+  ).replace(/^\/+/, "")}`;
+
   return (
     <>
-
       <div className="shoppingPage">
 
-        {/* Left Section */}
+        {/* ================= LEFT SECTION ================= */}
 
         <div className="leftSection">
 
           <img
-            src={product.img}
+            src={productImage}
             alt={product.name}
             className="mainImage"
           />
 
           <div className="buttonBox">
 
-            <button className="cartButton">
-
+            {/* Add To Cart */}
+            <button
+              className="cartButton"
+              onClick={() => addToCart(product._id)}
+            >
               <FaShoppingCart />
-
               Add to Cart
-
             </button>
 
-            <button className="buyButton">
-
+            {/* Buy Now */}
+            <button
+              className="buyButton"
+              onClick={() => {
+                console.log("Buy Now:", product);
+              }}
+            >
               <FaBolt />
-
               Buy Now
-
             </button>
 
           </div>
 
         </div>
 
-        {/* Right Section */}
+        {/* ================= RIGHT SECTION ================= */}
 
         <div className="rightSection">
 
+          {/* Product Name */}
           <h1>
-
             {product.name}
-
           </h1>
 
+          {/* Rating */}
           <div className="ratingBox">
 
             <span className="rating">
-
               4.5
-
             </span>
 
             <FaStar />
@@ -88,50 +96,47 @@ function JacketsShopping() {
             <FaStar />
 
             <span>
-
-              ({product.reviews} Ratings)
-
+              ({product.reviews || 0} Ratings)
             </span>
 
           </div>
+
+          {/* ================= PRICE ================= */}
 
           <h2 className="price">
 
             ₹{product.price}
 
-            <del>
+            {product.oldPrice && (
+              <del>
+                ₹{product.oldPrice}
+              </del>
+            )}
 
-              ₹{product.oldPrice}
-
-            </del>
-
-            <span>
-
-              {product.discount}
-
-            </span>
+            {product.discount && (
+              <span>
+                {product.discount}
+              </span>
+            )}
 
           </h2>
 
           <hr />
 
-          {/* Delivery */}
+          {/* ================= DELIVERY ================= */}
 
           <div className="deliveryBox">
 
             <h3>Delivery</h3>
 
             <p>
-
               <FaTruck style={{ color: "green" }} />
-
               Free Delivery by Tomorrow
-
             </p>
 
           </div>
 
-          {/* Offers */}
+          {/* ================= OFFERS ================= */}
 
           <div className="offerBox">
 
@@ -157,39 +162,30 @@ function JacketsShopping() {
 
           <hr />
 
-          {/* Features */}
+          {/* ================= FEATURES ================= */}
 
           <div className="featureBox">
 
             <div>
-
               <FaTruck />
-
               <p>Fast Delivery</p>
-
             </div>
 
             <div>
-
               <FaUndo />
-
               <p>7 Days Return</p>
-
             </div>
 
             <div>
-
               <FaShieldAlt />
-
               <p>Secure Payment</p>
-
             </div>
 
           </div>
 
           <hr />
 
-          {/* Product Details */}
+          {/* ================= PRODUCT DETAILS ================= */}
 
           <div className="detailsBox">
 
@@ -206,11 +202,11 @@ function JacketsShopping() {
               </li>
 
               <li>
-                Best for Home Decoration
+                Comfortable & Perfect Fit
               </li>
 
               <li>
-                Easy to Use & Maintain
+                Easy to Wash & Maintain
               </li>
 
               <li>
@@ -224,7 +220,6 @@ function JacketsShopping() {
         </div>
 
       </div>
-
     </>
   );
 }
