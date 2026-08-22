@@ -38,7 +38,7 @@ function Trousers() {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Trousers"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Trousers"
         );
 
         if (!response.ok) {
@@ -94,9 +94,7 @@ function Trousers() {
     });
   };
 
-  // ======================================
-  // ADD TO CART
-  // ======================================
+ 
   const addToCart = (item) => {
     try {
       // Get existing cart
@@ -135,9 +133,7 @@ function Trousers() {
     }
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
+
   if (loading) {
     return (
       <>
@@ -156,9 +152,7 @@ function Trousers() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -178,9 +172,7 @@ function Trousers() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+  
   return (
     <>
       {/* Category Section */}

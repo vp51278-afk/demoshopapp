@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./GardenOutdoor.css";
 import CategorySection2 from "./CategorySection2";
 import { addToCart } from "./addToCart";
+
 import {
   FaHeart,
   FaRegHeart,
@@ -11,7 +12,9 @@ import {
 } from "react-icons/fa";
 
 function GardenOutdoor() {
+
   const navigate = useNavigate();
+
 
   const [products, setProducts] = useState([]);
   const [liked, setLiked] = useState([]);
@@ -45,27 +48,23 @@ function GardenOutdoor() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
   const toggleLike = (index) => {
     const temp = [...liked];
+
     temp[index] = !temp[index];
+
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+  
   const toggleCard = (index) => {
     const temp = [...selected];
+
     temp[index] = !temp[index];
+
     setSelected(temp);
   };
 
-  // =========================
-  // Open Product
-  // =========================
   const openProduct = (item, index) => {
     toggleCard(index);
 
@@ -74,14 +73,27 @@ function GardenOutdoor() {
     });
   };
 
+  const handleShopNow = () => {
+    if (products.length > 0) {
+      navigate("/home-decor-shopping", {
+        state: products[0],
+      });
+    }
+  };
+
   return (
     <>
-      {/* Category Section */}
+
       <CategorySection2 />
 
-      {/* Garden Outdoor Banner */}
+      {/* 
+          Garden Outdoor Banner
+     */}
       <div className="shopBanner">
-        <h1>✨ Garden Outdoor Collection ✨</h1>
+
+        <h1>
+          ✨ Garden Outdoor Collection ✨
+        </h1>
 
         <p>
           🌿 “Bring Nature Home, One Garden at a Time.”
@@ -90,20 +102,21 @@ function GardenOutdoor() {
         {products.length > 0 && (
           <button
             className="shopNowBtn"
-            onClick={() =>
-              navigate("/home-decor-shopping", {
-                state: products[0],
-              })
-            }
+            onClick={handleShopNow}
           >
             Shop Now
           </button>
         )}
+
       </div>
 
-      {/* Products */}
+      {/* 
+          Products
+     */}
       <div className="products">
+
         {products.map((item, index) => (
+
           <div
             key={item._id || index}
             className={`cart ${
@@ -111,7 +124,10 @@ function GardenOutdoor() {
             }`}
             onClick={() => openProduct(item, index)}
           >
-            {/* Wishlist */}
+
+            {/*
+                Wishlist
+          */}
             <div
               className="wishlist"
               onClick={(e) => {
@@ -126,19 +142,26 @@ function GardenOutdoor() {
               )}
             </div>
 
-            {/* Product Image */}
+            {/* 
+                Product Image
+           */}
             <img
               src={item.img}
               alt={item.name}
             />
 
-            {/* Product Name */}
+            {/*
+                Product Name
+     */}
             <h3 className="head">
               {item.name}
             </h3>
 
-            {/* Rating */}
+            {/*
+                Rating
+       */}
             <div className="rating">
+
               <FaStar />
               <FaStar />
               <FaStar />
@@ -148,37 +171,53 @@ function GardenOutdoor() {
               <span>
                 ({item.reviews || 0})
               </span>
+
             </div>
 
-            {/* Price */}
+            {/* 
+                Price
+     */}
             <div className="price">
+
               <span className="newPrice">
                 ₹{item.price}
               </span>
 
-              <span className="oldPrice">
-                ₹{item.oldPrice}
-              </span>
+              {item.oldPrice && (
+                <span className="oldPrice">
+                  ₹{item.oldPrice}
+                </span>
+              )}
 
-              <span className="discount">
-                {item.discount}
-              </span>
+              {item.discount && (
+                <span className="discount">
+                  {item.discount}
+                </span>
+              )}
+
             </div>
 
-            {/* Add To Cart */}
+            {/* 
+                Add To Cart
+        */}
             <button
-  className="cartBtn"
-  onClick={(e) => {
-    e.stopPropagation();
-    addToCart(item);
-  }}
->
-  <FaShoppingCart style={{ marginRight: "8px" }} />
-  Add to Cart
-</button>
-                
+              className="cartBtn"
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart(item);
+              }}
+            >
+              <FaShoppingCart
+                style={{ marginRight: "8px" }}
+              />
+
+              Add to Cart
+            </button>
+
           </div>
+
         ))}
+
       </div>
     </>
   );

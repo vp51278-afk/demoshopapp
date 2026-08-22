@@ -10,7 +10,7 @@ body{
     background:#f5f6fa;
 }
 
-/* ================= PRODUCTS ================= */
+
 
 .products{
     width:100%;
@@ -23,7 +23,6 @@ body{
     gap:12px;
 }
 
-/* ================= CARD ================= */
 
 .cart{
     background:#fff;

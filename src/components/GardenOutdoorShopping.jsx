@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./GardenOutdoorShopping.css";
+import { addToCart } from "./addToCart";
 
 import {
   FaStar,
@@ -28,23 +29,33 @@ function GardenOutdoorShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* Left Section */}
+     
       <div className="leftSection">
 
+        {/* Product Image */}
         <img
           src={product.img}
           alt={product.name}
           className="mainImage"
         />
 
+        {/* Buttons */}
         <div className="buttonBox">
 
-          <button className="cartButton">
+          {/* Add To Cart */}
+          <button
+            className="cartButton"
+            onClick={() => addToCart(product)}
+          >
             <FaShoppingCart />
             Add to Cart
           </button>
 
-          <button className="buyButton">
+          {/* Buy Now */}
+          <button
+            className="buyButton"
+            onClick={() => addToCart(product)}
+          >
             <FaBolt />
             Buy Now
           </button>
@@ -52,12 +63,13 @@ function GardenOutdoorShopping() {
         </div>
       </div>
 
-      {/* Right Section */}
+     
       <div className="rightSection">
 
+        {/* Product Name */}
         <h1>{product.name}</h1>
 
-        {/* Rating */}
+       
         <div className="ratingBox">
 
           <span className="rating">
@@ -76,28 +88,32 @@ function GardenOutdoorShopping() {
 
         </div>
 
-        {/* Price */}
-        <h2 className="price">
+        {/* =========================
+            Price
+        ========================= */}
+        <div className="price">
 
-          ₹{product.price}
+          <span className="newPrice">
+            ₹{product.price}
+          </span>
 
           {product.oldPrice && (
-            <del>
+            <del className="oldPrice">
               ₹{product.oldPrice}
             </del>
           )}
 
           {product.discount && (
-            <span>
+            <span className="discount">
               {product.discount}
             </span>
           )}
 
-        </h2>
+        </div>
 
         <hr />
 
-        {/* Delivery */}
+      
         <div className="deliveryBox">
 
           <h3>Delivery</h3>
@@ -109,7 +125,7 @@ function GardenOutdoorShopping() {
 
         </div>
 
-        {/* Offers */}
+      
         <div className="offerBox">
 
           <h3>Available Offers</h3>
@@ -138,7 +154,9 @@ function GardenOutdoorShopping() {
 
         <hr />
 
-        {/* Features */}
+        {/* =========================
+            Features
+        ========================= */}
         <div className="featureBox">
 
           <div>
@@ -160,7 +178,9 @@ function GardenOutdoorShopping() {
 
         <hr />
 
-        {/* Product Details */}
+        {/* =========================
+            Product Details
+        ========================= */}
         <div className="detailsBox">
 
           <h3>About this Item</h3>

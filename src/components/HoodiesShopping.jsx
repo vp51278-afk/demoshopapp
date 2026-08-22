@@ -14,7 +14,6 @@ import {
 } from "react-icons/fa";
 
 function HoodiesShopping() {
-
   const location = useLocation();
 
   const product = location.state;
@@ -28,203 +27,196 @@ function HoodiesShopping() {
     );
   }
 
-  // MongoDB image handling
-  const productImage = `/${String(
-    product.image || product.img || ""
-  ).replace(/^\/+/, "")}`;
-
   return (
-    <>
-      <div className="shoppingPage">
+    <div className="shoppingPage">
 
-        {/* ================= LEFT SECTION ================= */}
+    
 
-        <div className="leftSection">
+      <div className="leftSection">
 
-          <img
-            src={productImage}
-            alt={product.name}
-            className="mainImage"
-          />
+        {/* Product Image */}
+        <img
+          src={product.img || product.image}
+          alt={product.name}
+          className="mainImage"
+        />
 
-          <div className="buttonBox">
+        <div className="buttonBox">
 
-            {/* Add To Cart */}
-            <button
-              className="cartButton"
-              onClick={() => addToCart(product._id)}
-            >
-              <FaShoppingCart />
-              Add to Cart
-            </button>
+          {/* Add To Cart */}
+          <button
+            className="cartButton"
+            onClick={() => addToCart(product)}
+          >
+            <FaShoppingCart />
+            Add to Cart
+          </button>
 
-            {/* Buy Now */}
-            <button
-              className="buyButton"
-              onClick={() => {
-                console.log("Buy Now:", product);
-              }}
-            >
-              <FaBolt />
-              Buy Now
-            </button>
+          {/* Buy Now */}
+          <button
+            className="buyButton"
+            onClick={() => {
+              console.log("Buy Now:", product);
+            }}
+          >
+            <FaBolt />
+            Buy Now
+          </button>
 
+        </div>
+      </div>
+
+
+      <div className="rightSection">
+
+        {/* Product Name */}
+        <h1>
+          {product.name}
+        </h1>
+
+        {/* Rating */}
+        <div className="ratingBox">
+
+          <span className="rating">
+            4.5
+          </span>
+
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+
+          <span>
+            ({product.reviews || 0} Ratings)
+          </span>
+
+        </div>
+
+
+
+        <div className="price">
+
+          <span className="newPrice">
+            ₹{product.price}
+          </span>
+
+          {product.oldPrice && (
+            <del className="oldPrice">
+              ₹{product.oldPrice}
+            </del>
+          )}
+
+          {product.discount && (
+            <span className="discount">
+              {product.discount}
+            </span>
+          )}
+
+        </div>
+
+        <hr />
+
+       
+
+        <div className="deliveryBox">
+
+          <h3>Delivery</h3>
+
+          <p>
+            <FaTruck style={{ color: "green" }} />
+            Free Delivery by Tomorrow
+          </p>
+
+        </div>
+
+     
+
+        <div className="offerBox">
+
+          <h3>Available Offers</h3>
+
+          <ul>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Free Delivery on Orders above ₹499
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
+          </ul>
+
+        </div>
+
+        <hr />
+
+       
+        <div className="featureBox">
+
+          <div>
+            <FaTruck />
+            <p>Fast Delivery</p>
+          </div>
+
+          <div>
+            <FaUndo />
+            <p>7 Days Return</p>
+          </div>
+
+          <div>
+            <FaShieldAlt />
+            <p>Secure Payment</p>
           </div>
 
         </div>
 
-        {/* ================= RIGHT SECTION ================= */}
+        <hr />
 
-        <div className="rightSection">
+       
 
-          {/* Product Name */}
-          <h1>
-            {product.name}
-          </h1>
+        <div className="detailsBox">
 
-          {/* Rating */}
-          <div className="ratingBox">
+          <h3>About this Item</h3>
 
-            <span className="rating">
-              4.5
-            </span>
+          <ul>
 
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
+            <li>
+              Premium Quality Hoodie
+            </li>
 
-            <span>
-              ({product.reviews || 0} Ratings)
-            </span>
+            <li>
+              Stylish & Modern Design
+            </li>
 
-          </div>
+            <li>
+              Soft & Comfortable Fabric
+            </li>
 
-          {/* ================= PRICE ================= */}
+            <li>
+              Perfect for Winter & Casual Wear
+            </li>
 
-          <h2 className="price">
+            <li>
+              Durable & Easy to Maintain
+            </li>
 
-            ₹{product.price}
-
-            {product.oldPrice && (
-              <del>
-                ₹{product.oldPrice}
-              </del>
-            )}
-
-            {product.discount && (
-              <span>
-                {product.discount}
-              </span>
-            )}
-
-          </h2>
-
-          <hr />
-
-          {/* ================= DELIVERY ================= */}
-
-          <div className="deliveryBox">
-
-            <h3>Delivery</h3>
-
-            <p>
-              <FaTruck style={{ color: "green" }} />
-              Free Delivery by Tomorrow
-            </p>
-
-          </div>
-
-          {/* ================= OFFERS ================= */}
-
-          <div className="offerBox">
-
-            <h3>Available Offers</h3>
-
-            <ul>
-
-              <li>
-                ✔ Bank Offer: 10% Instant Discount
-              </li>
-
-              <li>
-                ✔ No Cost EMI Available
-              </li>
-
-              <li>
-                ✔ Free Delivery on Orders above ₹499
-              </li>
-
-              <li>
-                ✔ Cash on Delivery Available
-              </li>
-
-            </ul>
-
-          </div>
-
-          <hr />
-
-          {/* ================= FEATURES ================= */}
-
-          <div className="featureBox">
-
-            <div>
-              <FaTruck />
-              <p>Fast Delivery</p>
-            </div>
-
-            <div>
-              <FaUndo />
-              <p>7 Days Return</p>
-            </div>
-
-            <div>
-              <FaShieldAlt />
-              <p>Secure Payment</p>
-            </div>
-
-          </div>
-
-          <hr />
-
-          {/* ================= PRODUCT DETAILS ================= */}
-
-          <div className="detailsBox">
-
-            <h3>About this Item</h3>
-
-            <ul>
-
-              <li>
-                Premium Quality Product
-              </li>
-
-              <li>
-                Stylish & Modern Design
-              </li>
-
-              <li>
-                Comfortable & Perfect Fit
-              </li>
-
-              <li>
-                Easy to Wash & Maintain
-              </li>
-
-              <li>
-                Durable Premium Finish
-              </li>
-
-            </ul>
-
-          </div>
+          </ul>
 
         </div>
 
       </div>
-    </>
+
+    </div>
   );
 }
 

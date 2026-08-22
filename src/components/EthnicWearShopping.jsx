@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "./EthnicWearShopping.css";
 
+import { addToCart } from "./addToCart";
+
 import {
   FaStar,
   FaShoppingCart,
@@ -12,53 +14,105 @@ import {
 } from "react-icons/fa";
 
 function EthnicWearShopping() {
+
   const location = useLocation();
 
   const product = location.state;
 
-  // Safety Check
+
+  
+
   if (!product) {
     return (
-      <h2 style={{ textAlign: "center", marginTop: "100px" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          marginTop: "100px",
+        }}
+      >
         Product Not Found
       </h2>
     );
   }
 
+
+ 
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
+
   return (
     <div className="shoppingPage">
 
-      {/* Left Section */}
+
+      {/* 
+          LEFT SECTION
+    */}
+
       <div className="leftSection">
 
         <img
-          src={product.img}
+          src={
+            product.image ||
+            product.img
+          }
           alt={product.name}
           className="mainImage"
         />
 
+
         <div className="buttonBox">
 
-          <button className="cartButton">
+          {/* ADD TO CART */}
+
+          <button
+            className="cartButton"
+            onClick={handleAddToCart}
+          >
             <FaShoppingCart />
             Add to Cart
           </button>
 
-          <button className="buyButton">
+
+          {/* BUY NOW */}
+
+          <button
+            className="buyButton"
+            onClick={() =>
+              alert(
+                "Buy Now will be available soon."
+              )
+            }
+          >
             <FaBolt />
             Buy Now
           </button>
 
         </div>
+
       </div>
 
-      {/* Right Section */}
+
+      {/* 
+          RIGHT SECTION
+      */}
+
       <div className="rightSection">
 
-        {/* Product Name */}
-        <h1>{product.name}</h1>
 
-        {/* Rating */}
+        {/* PRODUCT NAME */}
+
+        <h1>
+          {product.name}
+        </h1>
+
+
+        {/*
+            RATING
+         */}
+
         <div className="ratingBox">
 
           <span className="rating">
@@ -77,18 +131,24 @@ function EthnicWearShopping() {
 
         </div>
 
-        {/* Price */}
+
+        {/* 
+            PRICE
+    */}
+
         <div className="price">
 
           <span className="newPrice">
             ₹{product.price}
           </span>
 
+
           {product.oldPrice && (
             <del className="oldPrice">
               ₹{product.oldPrice}
             </del>
           )}
+
 
           {product.discount && (
             <span className="discount">
@@ -98,24 +158,44 @@ function EthnicWearShopping() {
 
         </div>
 
+
         <hr />
 
-        {/* Delivery */}
+
+        {/* 
+            DELIVERY
+*/}
+
         <div className="deliveryBox">
 
-          <h3>Delivery</h3>
+          <h3>
+            Delivery
+          </h3>
 
           <p>
-            <FaTruck style={{ color: "green" }} />
+
+            <FaTruck
+              style={{
+                color: "green",
+              }}
+            />
+
             Free Delivery by Tomorrow
+
           </p>
 
         </div>
 
-        {/* Offers */}
+
+        {/*
+            OFFERS
+       */}
+
         <div className="offerBox">
 
-          <h3>Available Offers</h3>
+          <h3>
+            Available Offers
+          </h3>
 
           <ul>
 
@@ -139,34 +219,63 @@ function EthnicWearShopping() {
 
         </div>
 
+
         <hr />
 
-        {/* Features */}
+
+        {/*
+            FEATURES
+      */}
+
         <div className="featureBox">
 
           <div>
+
             <FaTruck />
-            <p>Fast Delivery</p>
+
+            <p>
+              Fast Delivery
+            </p>
+
           </div>
 
+
           <div>
+
             <FaUndo />
-            <p>7 Days Return</p>
+
+            <p>
+              7 Days Return
+            </p>
+
           </div>
 
+
           <div>
+
             <FaShieldAlt />
-            <p>Secure Payment</p>
+
+            <p>
+              Secure Payment
+            </p>
+
           </div>
 
         </div>
 
+
         <hr />
 
-        {/* Product Details */}
+
+        {/*
+            PRODUCT DETAILS
+    */}
+
         <div className="detailsBox">
 
-          <h3>About this Item</h3>
+          <h3>
+            About this Item
+          </h3>
 
           <ul>
 

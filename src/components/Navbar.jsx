@@ -27,7 +27,7 @@ function Navbar() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/products?search=${encodeURIComponent(
+        `https://demoshopapp-tn4i.vercel.app/api/products?search=${encodeURIComponent(
           value
         )}`
       );
@@ -81,7 +81,7 @@ function Navbar() {
 
   return (
     <>
-      {/* ================= HEADER ================= */}
+     
 
       <header className="navbar">
 
@@ -123,7 +123,7 @@ function Navbar() {
 
         </div>
 
-        {/* ================= SEARCH ================= */}
+    
 
         <div className="search-bar">
 

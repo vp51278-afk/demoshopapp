@@ -30,9 +30,6 @@ function Chips() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // FETCH PRODUCTS FROM MONGODB
-  // =====================================================
 
   useEffect(() => {
 
@@ -41,7 +38,7 @@ function Chips() {
       try {
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Chips"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Chips"
         );
 
         if (!response.ok) {
@@ -85,9 +82,6 @@ function Chips() {
   }, []);
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
 
   const handleAddToCart = async (productId) => {
 
@@ -123,7 +117,7 @@ function Chips() {
 
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+     "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 
@@ -143,9 +137,6 @@ function Chips() {
       const data = await response.json();
 
 
-      // =================================================
-      // SUCCESS
-      // =================================================
 
       if (response.ok) {
 
@@ -165,9 +156,7 @@ function Chips() {
       }
 
 
-      // =================================================
-      // UNAUTHORIZED
-      // =================================================
+
 
       else if (response.status === 401) {
 
@@ -181,9 +170,6 @@ function Chips() {
       }
 
 
-      // =================================================
-      // OTHER ERROR
-      // =================================================
 
       else {
 
@@ -213,9 +199,7 @@ function Chips() {
   };
 
 
-  // =====================================================
-  // WISHLIST
-  // =====================================================
+
 
   const toggleLike = (index) => {
 
@@ -228,9 +212,7 @@ function Chips() {
   };
 
 
-  // =====================================================
-  // CARD SELECTION
-  // =====================================================
+
 
   const toggleCard = (index) => {
 
@@ -249,9 +231,9 @@ function Chips() {
       <CategorySection6 />
 
 
-      {/* =================================================
+      {/*
           SUCCESS MESSAGE
-      ================================================= */}
+      */}
 
       {cartMessage && (
 
@@ -274,9 +256,9 @@ function Chips() {
       )}
 
 
-      {/* =================================================
+      {/*
           BANNER
-      ================================================= */}
+     */}
 
       <div className="shopBanner">
 
@@ -313,9 +295,9 @@ function Chips() {
       </div>
 
 
-      {/* =================================================
+      {/*
           LOADING
-      ================================================= */}
+    */}
 
       {loading && (
 
@@ -326,9 +308,9 @@ function Chips() {
       )}
 
 
-      {/* =================================================
+      {/*
           ERROR
-      ================================================= */}
+      */}
 
       {error && (
 
@@ -339,9 +321,9 @@ function Chips() {
       )}
 
 
-      {/* =================================================
+      {/* 
           PRODUCTS
-      ================================================= */}
+      */}
 
       <div className="products">
 

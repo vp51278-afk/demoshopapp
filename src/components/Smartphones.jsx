@@ -29,16 +29,14 @@ function Smartphones() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH SMARTPHONES FROM MONGODB
-  // ======================================
+
   useEffect(() => {
     const fetchSmartphones = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Smartphones"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Smartphones"
         );
 
         if (!response.ok) {
@@ -74,9 +72,7 @@ function Smartphones() {
     fetchSmartphones();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -87,9 +83,7 @@ function Smartphones() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -100,9 +94,7 @@ function Smartphones() {
     });
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
+
   if (loading) {
     return (
       <>
@@ -121,9 +113,6 @@ function Smartphones() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
   if (error) {
     return (
       <>
@@ -143,9 +132,7 @@ function Smartphones() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+
   return (
     <>
       {/* Category Section */}

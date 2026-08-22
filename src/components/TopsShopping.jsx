@@ -34,7 +34,7 @@ function TopsShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* ================= LEFT SECTION ================= */}
+    
 
       <div className="leftSection">
 
@@ -70,7 +70,7 @@ function TopsShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
+      
 
       <div className="rightSection">
 

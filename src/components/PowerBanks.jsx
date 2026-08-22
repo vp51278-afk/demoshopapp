@@ -17,11 +17,8 @@ function PowerBanks() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // =========================
-  // Fetch Products from MongoDB
-  // =========================
   useEffect(() => {
-    fetch("http://localhost:5000/api/products?category=PowerBanks")
+    fetch("https://demoshopapp-tn4i.vercel.app/api/products?category=PowerBanks")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -40,27 +37,21 @@ function PowerBanks() {
       });
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
+ 
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // =========================
-  // Product Selection
-  // =========================
+  
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
 
-  // =========================
-  // Product Details
-  // =========================
+
   const openProduct = (item, index) => {
     toggleCard(index);
 

@@ -17,14 +17,12 @@ function KitchenAppliances() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // =========================
-  // Fetch Products from MongoDB
-  // =========================
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products?category=Kitchen Appliances"
+          "https://demoshopapp-tn4i.vercel.app/api/products?category=Kitchen Appliances"
         );
 
         if (!response.ok) {
@@ -44,27 +42,20 @@ function KitchenAppliances() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
+
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
 
-  // =========================
-  // Product Detail
-  // =========================
+ 
   const openProduct = (item, index) => {
     toggleCard(index);
 

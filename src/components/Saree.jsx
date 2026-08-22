@@ -22,14 +22,12 @@ function Saree() {
   // Selected cards
   const [selected, setSelected] = useState([]);
 
-  // =========================
-  // Fetch Saree Products
-  // =========================
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Saree"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Saree"
         );
 
         if (!response.ok) {
@@ -52,9 +50,7 @@ function Saree() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
+ 
   const toggleLike = (index) => {
     const temp = [...liked];
 
@@ -63,9 +59,7 @@ function Saree() {
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+
   const toggleCard = (index) => {
     const temp = [...selected];
 
@@ -74,9 +68,7 @@ function Saree() {
     setSelected(temp);
   };
 
-  // =========================
-  // Product Details
-  // =========================
+
   const openProduct = (item, index) => {
     toggleCard(index);
 

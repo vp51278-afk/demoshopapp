@@ -29,16 +29,14 @@ function StorageOrganization() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH STORAGE & ORGANIZATION PRODUCTS
-  // ======================================
+
   useEffect(() => {
     const fetchStorageOrganization = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/StorageOrganization"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/StorageOrganization"
         );
 
         if (!response.ok) {
@@ -78,9 +76,6 @@ function StorageOrganization() {
     fetchStorageOrganization();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -91,9 +86,7 @@ function StorageOrganization() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -104,9 +97,6 @@ function StorageOrganization() {
     });
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
   if (loading) {
     return (
       <>
@@ -125,9 +115,7 @@ function StorageOrganization() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -147,9 +135,6 @@ function StorageOrganization() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
   return (
     <>
       {/* Category Section */}

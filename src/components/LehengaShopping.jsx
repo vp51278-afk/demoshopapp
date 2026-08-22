@@ -49,7 +49,7 @@ function LehengaShopping() {
           {/* Add To Cart */}
           <button
             className="cartButton"
-            onClick={() => addToCart(product._id)}
+            onClick={() => addToCart(product)}
           >
             <FaShoppingCart />
             Add to Cart
@@ -70,8 +70,7 @@ function LehengaShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
-
+      
       <div className="rightSection">
 
         {/* Product Name */}

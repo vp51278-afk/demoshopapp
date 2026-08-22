@@ -49,7 +49,7 @@ function ShoesShopping() {
             {/* Add To Cart */}
             <button
               className="cartButton"
-              onClick={() => addToCart(product._id)}
+              onClick={() => addToCart(product)}
             >
               <FaShoppingCart />
               Add to Cart

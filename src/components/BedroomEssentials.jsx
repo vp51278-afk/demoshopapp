@@ -32,10 +32,6 @@ function BedroomEssentials() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // FETCH PRODUCTS FROM MONGODB
-  // =====================================================
-
   useEffect(() => {
 
     const fetchProducts = async () => {
@@ -43,7 +39,7 @@ function BedroomEssentials() {
       try {
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/BedroomEssentials"
+         "https://demoshopapp-tn4i.vercel.app/api/products/category/Accessories"
         );
 
         if (!response.ok) {
@@ -90,9 +86,7 @@ function BedroomEssentials() {
   }, []);
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+ 
 
   const handleAddToCart = async (productId) => {
 
@@ -129,7 +123,7 @@ function BedroomEssentials() {
 
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+      "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 
@@ -149,9 +143,6 @@ function BedroomEssentials() {
       const data = await response.json();
 
 
-      // =================================================
-      // SUCCESS
-      // =================================================
 
       if (response.ok) {
 
@@ -174,9 +165,7 @@ function BedroomEssentials() {
       }
 
 
-      // =================================================
-      // TOKEN EXPIRED
-      // =================================================
+   
 
       else if (response.status === 401) {
 
@@ -190,10 +179,6 @@ function BedroomEssentials() {
 
       }
 
-
-      // =================================================
-      // OTHER ERROR
-      // =================================================
 
       else {
 
@@ -224,9 +209,6 @@ function BedroomEssentials() {
   };
 
 
-  // =====================================================
-  // TOGGLE WISHLIST
-  // =====================================================
 
   const toggleLike = (index) => {
 
@@ -239,9 +221,6 @@ function BedroomEssentials() {
   };
 
 
-  // =====================================================
-  // TOGGLE CARD
-  // =====================================================
 
   const toggleCard = (index) => {
 
@@ -254,10 +233,8 @@ function BedroomEssentials() {
   };
 
 
-  // =====================================================
-  // LOADING
-  // =====================================================
 
+ 
   if (loading) {
 
     return (
@@ -276,10 +253,6 @@ function BedroomEssentials() {
 
   }
 
-
-  // =====================================================
-  // ERROR
-  // =====================================================
 
   if (error) {
 

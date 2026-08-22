@@ -9,9 +9,7 @@ function Cart() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
 
-  // =====================================================
-  // FETCH CART
-  // =====================================================
+
 
   const fetchCart = async () => {
     const token = localStorage.getItem("token");
@@ -24,7 +22,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/cart",
+        "https://demoshopapp-tn4i.vercel.app/api/cart",
         {
           method: "GET",
           headers: {
@@ -61,9 +59,7 @@ function Cart() {
   };
 
 
-  // =====================================================
-  // LOAD CART
-  // =====================================================
+
 
   useEffect(() => {
     fetchCart();
@@ -87,10 +83,6 @@ function Cart() {
   }, []);
 
 
-  // =====================================================
-  // UPDATE QUANTITY
-  // =====================================================
-
   const updateQuantity = async (productId, quantity) => {
     const token = localStorage.getItem("token");
 
@@ -108,7 +100,7 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/update",
+       "https://demoshopapp-tn4i.vercel.app/api/cart/update",
         {
           method: "PUT",
 
@@ -169,9 +161,6 @@ function Cart() {
   };
 
 
-  // =====================================================
-  // REMOVE PRODUCT
-  // =====================================================
 
   const removeItem = async (productId) => {
     const token = localStorage.getItem("token");
@@ -185,7 +174,7 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-        `http://localhost:5000/api/cart/remove/${productId}`,
+        `https://demoshopapp-tn4i.vercel.app/api/cart/remove/${productId}`,
         {
           method: "DELETE",
 
@@ -240,9 +229,7 @@ function Cart() {
   };
 
 
-  // =====================================================
-  // CLEAR CART
-  // =====================================================
+
 
   const clearCart = async () => {
     const token = localStorage.getItem("token");
@@ -264,7 +251,7 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/clear",
+        "https://demoshopapp-tn4i.vercel.app/api/cart/clear",
         {
           method: "DELETE",
 
@@ -319,9 +306,7 @@ function Cart() {
   };
 
 
-  // =====================================================
-  // LOADING
-  // =====================================================
+
 
   if (loading) {
     return (
@@ -332,9 +317,7 @@ function Cart() {
   }
 
 
-  // =====================================================
-  // LOGIN CHECK
-  // =====================================================
+  
 
   if (!localStorage.getItem("token")) {
     return (
@@ -364,9 +347,7 @@ function Cart() {
   }
 
 
-  // =====================================================
-  // EMPTY CART
-  // =====================================================
+
 
   if (
     !cart ||
@@ -401,9 +382,6 @@ function Cart() {
   }
 
 
-  // =====================================================
-  // TOTAL CALCULATION
-  // =====================================================
 
   const totalItems = cart.items.reduce(
     (total, item) =>
@@ -460,16 +438,14 @@ function Cart() {
     );
 
 
-  // =====================================================
-  // CART UI
-  // =====================================================
+
 
   return (
     <div className="cartPage">
 
-      {/* =================================================
+      {/* 
           LEFT SECTION
-      ================================================= */}
+    */}
 
       <div className="cartLeft">
 
@@ -497,9 +473,9 @@ function Cart() {
         </p>
 
 
-        {/* =================================================
+        {/* 
             CART ITEMS
-        ================================================= */}
+       */}
 
         {cart.items.map((item) => {
 
@@ -621,9 +597,9 @@ function Cart() {
       </div>
 
 
-      {/* =================================================
+      {/*
           RIGHT SECTION
-      ================================================= */}
+      */}
 
       <div className="cartRight">
 

@@ -31,9 +31,6 @@ function Western() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH WESTERN PRODUCTS FROM MONGODB
-  // ======================================
 
   useEffect(() => {
     const fetchWestern = async () => {
@@ -41,7 +38,7 @@ function Western() {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Western"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Western"
         );
 
         if (!response.ok) {
@@ -83,9 +80,7 @@ function Western() {
     fetchWestern();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
 
   const toggleLike = (index) => {
     setLiked((previous) => {
@@ -97,9 +92,7 @@ function Western() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
 
   const toggleCard = (index) => {
     setSelected((previous) => {
@@ -111,9 +104,7 @@ function Western() {
     });
   };
 
-  // ======================================
-  // ADD TO CART
-  // ======================================
+  
 
   const handleAddToCart = async (e, productId) => {
     e.stopPropagation();
@@ -121,9 +112,7 @@ function Western() {
     await addToCart(productId, 1);
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
+
 
   if (loading) {
     return (
@@ -143,9 +132,7 @@ function Western() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
 
   if (error) {
     return (
@@ -166,9 +153,6 @@ function Western() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
 
   return (
     <>

@@ -34,7 +34,7 @@ function WatchesAccessoriesShopping() {
     <>
       <div className="shoppingPage">
 
-        {/* ================= LEFT SECTION ================= */}
+        
 
         <div className="leftSection">
 
@@ -69,7 +69,7 @@ function WatchesAccessoriesShopping() {
           </div>
         </div>
 
-        {/* ================= RIGHT SECTION ================= */}
+     
 
         <div className="rightSection">
 
@@ -118,7 +118,6 @@ function WatchesAccessoriesShopping() {
 
           <hr />
 
-          {/* ================= DELIVERY ================= */}
 
           <div className="deliveryBox">
 
@@ -132,7 +131,7 @@ function WatchesAccessoriesShopping() {
 
           </div>
 
-          {/* ================= OFFERS ================= */}
+      
 
           <div className="offerBox">
 
@@ -162,7 +161,7 @@ function WatchesAccessoriesShopping() {
 
           <hr />
 
-          {/* ================= FEATURES ================= */}
+   
 
           <div className="featureBox">
 
@@ -185,7 +184,7 @@ function WatchesAccessoriesShopping() {
 
           <hr />
 
-          {/* ================= PRODUCT DETAILS ================= */}
+         
 
           <div className="detailsBox">
 

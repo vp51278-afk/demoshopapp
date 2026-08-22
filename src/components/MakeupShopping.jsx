@@ -34,7 +34,7 @@ function MakeupShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* ================= LEFT SECTION ================= */}
+
 
       <div className="leftSection">
 
@@ -49,7 +49,7 @@ function MakeupShopping() {
           {/* Add To Cart */}
           <button
             className="cartButton"
-            onClick={() => addToCart(product._id)}
+            onClick={() => addToCart(product)}
           >
             <FaShoppingCart />
             Add to Cart
@@ -70,7 +70,6 @@ function MakeupShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
 
       <div className="rightSection">
 

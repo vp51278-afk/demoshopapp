@@ -33,7 +33,7 @@ function VegetablesShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* ================= LEFT SECTION ================= */}
+    
 
       <div className="leftSection">
 
@@ -69,7 +69,7 @@ function VegetablesShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
+
 
       <div className="rightSection">
 
@@ -97,7 +97,7 @@ function VegetablesShopping() {
 
         </div>
 
-        {/* ================= PRICE ================= */}
+      
 
         <div className="price">
 
@@ -121,7 +121,6 @@ function VegetablesShopping() {
 
         <hr />
 
-        {/* ================= DELIVERY ================= */}
 
         <div className="deliveryBox">
 
@@ -161,7 +160,6 @@ function VegetablesShopping() {
 
         <hr />
 
-        {/* ================= FEATURES ================= */}
 
         <div className="featureBox">
 
@@ -184,7 +182,7 @@ function VegetablesShopping() {
 
         <hr />
 
-        {/* ================= PRODUCT DETAILS ================= */}
+      
 
         <div className="detailsBox">
 

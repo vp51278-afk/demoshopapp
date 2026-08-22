@@ -17,14 +17,11 @@ function KitchenEssential() {
   const [liked, setLiked] = useState({});
   const [selected, setSelected] = useState({});
 
-  // ==============================
-  // Fetch Kitchen Products
-  // ==============================
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products?category=Kitchen"
+          "https://demoshopapp-tn4i.vercel.app/api/products?category=Kitchen"
         );
 
         const data = await response.json();
@@ -38,9 +35,7 @@ function KitchenEssential() {
     fetchProducts();
   }, []);
 
-  // ==============================
-  // Wishlist
-  // ==============================
+
   const toggleLike = (id) => {
     setLiked((prev) => ({
       ...prev,
@@ -48,9 +43,7 @@ function KitchenEssential() {
     }));
   };
 
-  // ==============================
-  // Product Card
-  // ==============================
+
   const toggleCard = (id) => {
     setSelected((prev) => ({
       ...prev,
@@ -58,9 +51,6 @@ function KitchenEssential() {
     }));
   };
 
-  // ==============================
-  // Shop Now
-  // ==============================
   const handleShopNow = () => {
     if (products.length > 0) {
       navigate("/home-decor-shopping", {

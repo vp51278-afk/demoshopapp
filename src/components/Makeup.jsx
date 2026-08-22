@@ -17,11 +17,9 @@ function Makeup() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // ==============================
-  // FETCH MAKEUP PRODUCTS
-  // ==============================
+ 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/category/Makeup")
+    fetch("https://demoshopapp-tn4i.vercel.app/api/products/category/Makeup")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");
@@ -42,9 +40,7 @@ function Makeup() {
       });
   }, []);
 
-  // ==============================
-  // WISHLIST
-  // ==============================
+
   const toggleLike = (index) => {
     const temp = [...liked];
 
@@ -53,9 +49,7 @@ function Makeup() {
     setLiked(temp);
   };
 
-  // ==============================
-  // CARD
-  // ==============================
+
   const toggleCard = (index) => {
     const temp = [...selected];
 

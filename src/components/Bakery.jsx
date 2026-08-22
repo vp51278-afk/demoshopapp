@@ -37,7 +37,7 @@ function Bakery() {
   useEffect(() => {
 
     fetch(
-      "http://localhost:5000/api/products/category/Bakery"
+      "https://demoshopapp-tn4i.vercel.app/api/products/category//Bakery"
     )
       .then((res) => {
 
@@ -84,9 +84,7 @@ function Bakery() {
   }, []);
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+
 
   const handleAddToCart = async (productId) => {
 
@@ -118,7 +116,7 @@ function Bakery() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 
@@ -203,9 +201,6 @@ function Bakery() {
   };
 
 
-  // =====================================================
-  // TOGGLE WISHLIST
-  // =====================================================
 
   const toggleLike = (index) => {
 
@@ -217,10 +212,6 @@ function Bakery() {
   };
 
 
-  // =====================================================
-  // TOGGLE CARD
-  // =====================================================
-
   const toggleCard = (index) => {
 
     const temp = [...selected];
@@ -231,9 +222,6 @@ function Bakery() {
   };
 
 
-  // =====================================================
-  // LOADING
-  // =====================================================
 
   if (loading) {
 
@@ -264,9 +252,7 @@ function Bakery() {
   }
 
 
-  // =====================================================
-  // MAIN UI
-  // =====================================================
+
 
   return (
     <>

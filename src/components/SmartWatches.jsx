@@ -29,16 +29,14 @@ function SmartWatches() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH SMART WATCHES FROM MONGODB
-  // ======================================
+
   useEffect(() => {
     const fetchSmartWatches = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/SmartWatches"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/SmartWatches"
         );
 
         if (!response.ok) {
@@ -74,9 +72,7 @@ function SmartWatches() {
     fetchSmartWatches();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+  
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -87,9 +83,7 @@ function SmartWatches() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -100,9 +94,7 @@ function SmartWatches() {
     });
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
+
   if (loading) {
     return (
       <>
@@ -121,9 +113,7 @@ function SmartWatches() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -143,9 +133,7 @@ function SmartWatches() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+
   return (
     <>
       {/* Category Section */}

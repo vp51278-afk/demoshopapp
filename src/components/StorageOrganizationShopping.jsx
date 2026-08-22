@@ -34,7 +34,7 @@ function StorageOrganizationShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* ================= LEFT SECTION ================= */}
+      
 
       <div className="leftSection">
 
@@ -70,7 +70,6 @@ function StorageOrganizationShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
 
       <div className="rightSection">
 

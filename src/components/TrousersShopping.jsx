@@ -25,9 +25,7 @@ function TrousersShopping() {
     );
   }
 
-  // ======================================
-  // ADD TO CART
-  // ======================================
+
   const addToCart = () => {
     const existingCart =
       JSON.parse(localStorage.getItem("cart")) || [];

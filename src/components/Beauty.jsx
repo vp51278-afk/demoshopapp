@@ -33,15 +33,13 @@ function Beauty() {
   const [cartLoading, setCartLoading] = useState(null);
 
 
-  // =====================================================
-  // FETCH BEAUTY PRODUCTS FROM MONGODB
-  // =====================================================
+
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Beauty"
+         "https://demoshopapp-tn4i.vercel.app/api/products/category//Beauty"
         );
 
         if (!response.ok) {
@@ -78,10 +76,6 @@ function Beauty() {
   }, []);
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
-
   const handleAddToCart = async (productId) => {
 
     // Get JWT token
@@ -108,7 +102,7 @@ function Beauty() {
       setCartMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 
@@ -127,9 +121,6 @@ function Beauty() {
       const data = await response.json();
 
 
-      // =================================================
-      // SUCCESS
-      // =================================================
 
       if (response.ok) {
 
@@ -149,10 +140,6 @@ function Beauty() {
       }
 
 
-      // =================================================
-      // TOKEN EXPIRED
-      // =================================================
-
       else if (response.status === 401) {
 
         localStorage.removeItem("token");
@@ -165,10 +152,6 @@ function Beauty() {
 
       }
 
-
-      // =================================================
-      // OTHER ERROR
-      // =================================================
 
       else {
 
@@ -198,9 +181,7 @@ function Beauty() {
   };
 
 
-  // =====================================================
-  // TOGGLE WISHLIST
-  // =====================================================
+
 
   const toggleLike = (index) => {
 
@@ -211,11 +192,6 @@ function Beauty() {
     setLiked(temp);
 
   };
-
-
-  // =====================================================
-  // TOGGLE CARD
-  // =====================================================
 
   const toggleCard = (index) => {
 
@@ -228,9 +204,6 @@ function Beauty() {
   };
 
 
-  // =====================================================
-  // LOADING
-  // =====================================================
 
   if (loading) {
 
@@ -250,9 +223,7 @@ function Beauty() {
   }
 
 
-  // =====================================================
-  // ERROR
-  // =====================================================
+
 
   if (error) {
 
@@ -271,10 +242,6 @@ function Beauty() {
     );
   }
 
-
-  // =====================================================
-  // MAIN UI
-  // =====================================================
 
   return (
     <>

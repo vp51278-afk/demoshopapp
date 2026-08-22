@@ -32,182 +32,189 @@ function KurtiShopping() {
   ).replace(/^\/+/, "")}`;
 
   return (
-    <>
-      <div className="shoppingPage">
+    <div className="shoppingPage">
 
-        {/* Left Section */}
-        <div className="leftSection">
+   
 
-          <img
-            src={productImage}
-            alt={product.name}
-            className="mainImage"
-          />
+      <div className="leftSection">
 
-          <div className="buttonBox">
+        <img
+          src={productImage}
+          alt={product.name}
+          className="mainImage"
+        />
 
-            {/* Add To Cart */}
-            <button
-              className="cartButton"
-              onClick={() => addToCart(product._id)}
-            >
-              <FaShoppingCart />
-              Add to Cart
-            </button>
+        <div className="buttonBox">
 
-            {/* Buy Now */}
-            <button
-              className="buyButton"
-              onClick={() => {
-                console.log("Buy Now:", product);
-              }}
-            >
-              <FaBolt />
-              Buy Now
-            </button>
+          {/* Add To Cart */}
+          <button
+            className="cartButton"
+            onClick={() => addToCart(product)}
+          >
+            <FaShoppingCart />
+            Add to Cart
+          </button>
 
-          </div>
-        </div>
-
-        {/* Right Section */}
-        <div className="rightSection">
-
-          {/* Product Name */}
-          <h1>{product.name}</h1>
-
-          {/* Rating */}
-          <div className="ratingBox">
-
-            <span className="rating">
-              4.5
-            </span>
-
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-
-            <span>
-              ({product.reviews || 0} Ratings)
-            </span>
-
-          </div>
-
-          {/* Price */}
-          <h2 className="price">
-
-            ₹{product.price}
-
-            {product.oldPrice && (
-              <del>
-                ₹{product.oldPrice}
-              </del>
-            )}
-
-            {product.discount && (
-              <span>
-                {product.discount}
-              </span>
-            )}
-
-          </h2>
-
-          <hr />
-
-          {/* Delivery */}
-          <div className="deliveryBox">
-
-            <h3>Delivery</h3>
-
-            <p>
-              <FaTruck style={{ color: "green" }} />
-              Free Delivery by Tomorrow
-            </p>
-
-          </div>
-
-          {/* Offers */}
-          <div className="offerBox">
-
-            <h3>Available Offers</h3>
-
-            <ul>
-
-              <li>
-                ✔ Bank Offer: 10% Instant Discount
-              </li>
-
-              <li>
-                ✔ No Cost EMI Available
-              </li>
-
-              <li>
-                ✔ Cash on Delivery Available
-              </li>
-
-            </ul>
-
-          </div>
-
-          <hr />
-
-          {/* Features */}
-          <div className="featureBox">
-
-            <div>
-              <FaTruck />
-              <p>Fast Delivery</p>
-            </div>
-
-            <div>
-              <FaUndo />
-              <p>7 Days Return</p>
-            </div>
-
-            <div>
-              <FaShieldAlt />
-              <p>Secure Payment</p>
-            </div>
-
-          </div>
-
-          <hr />
-
-          {/* Product Details */}
-          <div className="detailsBox">
-
-            <h3>About this Item</h3>
-
-            <ul>
-
-              <li>
-                Premium Quality Product
-              </li>
-
-              <li>
-                Stylish & Modern Design
-              </li>
-
-              <li>
-                Comfortable & Perfect Fit
-              </li>
-
-              <li>
-                Easy to Wash & Maintain
-              </li>
-
-              <li>
-                Durable Premium Finish
-              </li>
-
-            </ul>
-
-          </div>
+          {/* Buy Now */}
+          <button
+            className="buyButton"
+            onClick={() => {
+              console.log("Buy Now:", product);
+            }}
+          >
+            <FaBolt />
+            Buy Now
+          </button>
 
         </div>
+
       </div>
-    </>
+
+     
+
+      <div className="rightSection">
+
+        {/* Product Name */}
+        <h1>{product.name}</h1>
+
+        {/* Rating */}
+        <div className="ratingBox">
+
+          <span className="rating">
+            4.5
+          </span>
+
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+
+          <span>
+            ({product.reviews || 0} Ratings)
+          </span>
+
+        </div>
+
+
+        <div className="price">
+
+          <span className="newPrice">
+            ₹{product.price}
+          </span>
+
+          {product.oldPrice && (
+            <del className="oldPrice">
+              ₹{product.oldPrice}
+            </del>
+          )}
+
+          {product.discount && (
+            <span className="discount">
+              {product.discount}
+            </span>
+          )}
+
+        </div>
+
+        <hr />
+
+
+
+        <div className="deliveryBox">
+
+          <h3>Delivery</h3>
+
+          <p>
+            <FaTruck style={{ color: "green" }} />
+            Free Delivery by Tomorrow
+          </p>
+
+        </div>
+
+
+        <div className="offerBox">
+
+          <h3>Available Offers</h3>
+
+          <ul>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
+          </ul>
+
+        </div>
+
+        <hr />
+
+
+
+        <div className="featureBox">
+
+          <div>
+            <FaTruck />
+            <p>Fast Delivery</p>
+          </div>
+
+          <div>
+            <FaUndo />
+            <p>7 Days Return</p>
+          </div>
+
+          <div>
+            <FaShieldAlt />
+            <p>Secure Payment</p>
+          </div>
+
+        </div>
+
+        <hr />
+
+   
+
+        <div className="detailsBox">
+
+          <h3>About this Item</h3>
+
+          <ul>
+
+            <li>
+              Premium Quality Kurti
+            </li>
+
+            <li>
+              Stylish & Modern Design
+            </li>
+
+            <li>
+              Comfortable & Perfect Fit
+            </li>
+
+            <li>
+              Easy to Wash & Maintain
+            </li>
+
+            <li>
+              Durable Premium Finish
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
   );
 }
 

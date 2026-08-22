@@ -34,7 +34,7 @@ function PowerBanksShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* ================= LEFT SECTION ================= */}
+
 
       <div className="leftSection">
 
@@ -49,7 +49,7 @@ function PowerBanksShopping() {
           {/* Add To Cart */}
           <button
             className="cartButton"
-            onClick={() => addToCart(product._id)}
+            onClick={() => addToCart(product)}
           >
             <FaShoppingCart />
             Add to Cart
@@ -70,7 +70,7 @@ function PowerBanksShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
+     
 
       <div className="rightSection">
 

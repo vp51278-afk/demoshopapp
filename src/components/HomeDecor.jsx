@@ -21,7 +21,7 @@ function HomeDecor() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products?category=HomeDecor"
+          "https://demoshopapp-tn4i.vercel.app/api/products?category=HomeDecor"
         );
 
         if (!response.ok) {
@@ -44,18 +44,14 @@ function HomeDecor() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
+
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+ 
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];

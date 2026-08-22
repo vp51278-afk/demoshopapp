@@ -23,7 +23,7 @@ function Shirts() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/Shirts"
+          "https://demoshopapp-tn4i.vercel.app/api/products/Shirts"
         );
 
         if (!response.ok) {
@@ -45,9 +45,7 @@ function Shirts() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
+  
   const toggleLike = (index) => {
     const temp = [...liked];
 
@@ -56,9 +54,7 @@ function Shirts() {
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+
   const toggleCard = (index) => {
     const temp = [...selected];
 
@@ -67,9 +63,7 @@ function Shirts() {
     setSelected(temp);
   };
 
-  // =========================
-  // Loading
-  // =========================
+
   if (loading) {
     return (
       <>

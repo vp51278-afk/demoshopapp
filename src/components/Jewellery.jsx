@@ -17,14 +17,12 @@ function Jewellery() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // =========================
-  // Fetch Jewellery Products
-  // =========================
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products?category=Jewellery"
+          "https://demoshopapp-tn4i.vercel.app/api/products?category=Jewellery"
         );
 
         if (!response.ok) {
@@ -44,27 +42,19 @@ function Jewellery() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
 
-  // =========================
-  // Open Product
-  // =========================
   const openProduct = (item, index) => {
     toggleCard(index);
 

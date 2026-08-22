@@ -38,7 +38,7 @@ function Skincare() {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Skincare"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Skincare"
         );
 
         if (!response.ok) {
@@ -74,9 +74,7 @@ function Skincare() {
     fetchSkincare();
   }, []);
 
-  // ==========================================
-  // TOGGLE WISHLIST
-  // ==========================================
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -87,9 +85,7 @@ function Skincare() {
     });
   };
 
-  // ==========================================
-  // TOGGLE CARD
-  // ==========================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -100,9 +96,6 @@ function Skincare() {
     });
   };
 
-  // ==========================================
-  // PRODUCT IMAGE
-  // ==========================================
   const getImage = (item) => {
     return `/${String(item.image || item.img || "").replace(
       /^\/+/,
@@ -110,9 +103,6 @@ function Skincare() {
     )}`;
   };
 
-  // ==========================================
-  // LOADING
-  // ==========================================
   if (loading) {
     return (
       <>
@@ -131,9 +121,7 @@ function Skincare() {
     );
   }
 
-  // ==========================================
-  // ERROR
-  // ==========================================
+
   if (error) {
     return (
       <>
@@ -153,9 +141,7 @@ function Skincare() {
     );
   }
 
-  // ==========================================
-  // MAIN UI
-  // ==========================================
+ 
   return (
     <>
       {/* Category Section */}

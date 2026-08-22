@@ -22,7 +22,7 @@ function Fresh() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products?category=Fresh"
+          "https://demoshopapp-tn4i.vercel.app/api/products?category=Fresh"
         );
 
         if (!response.ok) {
@@ -42,27 +42,21 @@ function Fresh() {
     fetchProducts();
   }, []);
 
-  // =========================
-  // Wishlist
-  // =========================
+
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
 
-  // =========================
-  // Open Product
-  // =========================
+  
   const openProduct = (item, index) => {
     toggleCard(index);
 

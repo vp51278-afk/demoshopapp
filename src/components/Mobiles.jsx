@@ -19,7 +19,7 @@ function Mobiles() {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/category/Mobiles")
+    fetch("https://demoshopapp-tn4i.vercel.app/api/products/category/Mobiles")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");
@@ -36,18 +36,13 @@ function Mobiles() {
       });
   }, []);
 
-  // ==============================
-  // WISHLIST
-  // ==============================
+
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // ==============================
-  // CARD
-  // ==============================
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];

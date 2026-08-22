@@ -21,10 +21,6 @@ function ChipsShopping() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // SAFETY CHECK
-  // =====================================================
-
   if (!product) {
     return (
       <h2
@@ -39,9 +35,7 @@ function ChipsShopping() {
   }
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+
 
   const handleAddToCart = async () => {
 
@@ -83,7 +77,7 @@ function ChipsShopping() {
 
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 
@@ -103,9 +97,7 @@ function ChipsShopping() {
       const data = await response.json();
 
 
-      // =================================================
-      // SUCCESS
-      // =================================================
+    
 
       if (response.ok) {
 
@@ -126,9 +118,6 @@ function ChipsShopping() {
       }
 
 
-      // =================================================
-      // UNAUTHORIZED
-      // =================================================
 
       else if (response.status === 401) {
 
@@ -142,9 +131,6 @@ function ChipsShopping() {
       }
 
 
-      // =================================================
-      // OTHER ERROR
-      // =================================================
 
       else {
 
@@ -178,9 +164,9 @@ function ChipsShopping() {
     <>
 
 
-      {/* =================================================
+      {/* 
           SUCCESS MESSAGE
-      ================================================= */}
+    */}
 
       {cartMessage && (
 
@@ -203,16 +189,16 @@ function ChipsShopping() {
       )}
 
 
-      {/* =================================================
+      {/*
           SHOPPING PAGE
-      ================================================= */}
+       */}
 
       <div className="shoppingPage">
 
 
-        {/* =================================================
+        {/* 
             LEFT SECTION
-        ================================================= */}
+         */}
 
         <div className="leftSection">
 
@@ -232,9 +218,9 @@ function ChipsShopping() {
           <div className="buttonBox">
 
 
-            {/* =================================================
+            {/* 
                 ADD TO CART BUTTON
-            ================================================= */}
+            */}
 
             <button
               className="cartButton"
@@ -252,9 +238,9 @@ function ChipsShopping() {
             </button>
 
 
-            {/* =================================================
+            {/*
                 BUY NOW BUTTON
-            ================================================= */}
+            */}
 
             <button className="buyButton">
 
@@ -269,9 +255,9 @@ function ChipsShopping() {
         </div>
 
 
-        {/* =================================================
+        {/* 
             RIGHT SECTION
-        ================================================= */}
+         */}
 
         <div className="rightSection">
 
@@ -283,9 +269,9 @@ function ChipsShopping() {
           </h1>
 
 
-          {/* =================================================
+          {/* 
               RATING
-          ================================================= */}
+          */}
 
           <div className="ratingBox">
 
@@ -306,9 +292,9 @@ function ChipsShopping() {
           </div>
 
 
-          {/* =================================================
+          {/*
               PRICE
-          ================================================= */}
+        */}
 
           <h2 className="price">
 
@@ -328,9 +314,9 @@ function ChipsShopping() {
           <hr />
 
 
-          {/* =================================================
+          {/*
               DELIVERY
-          ================================================= */}
+          */}
 
           <div className="deliveryBox">
 
@@ -353,9 +339,9 @@ function ChipsShopping() {
           </div>
 
 
-          {/* =================================================
+          {/*
               OFFERS
-          ================================================= */}
+          */}
 
           <div className="offerBox">
 
@@ -389,9 +375,9 @@ function ChipsShopping() {
           <hr />
 
 
-          {/* =================================================
+          {/* 
               FEATURES
-          ================================================= */}
+ */}
 
           <div className="featureBox">
 
@@ -434,9 +420,9 @@ function ChipsShopping() {
           <hr />
 
 
-          {/* =================================================
+          {/* 
               PRODUCT DETAILS
-          ================================================= */}
+          */}
 
           <div className="detailsBox">
 

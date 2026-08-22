@@ -17,11 +17,9 @@ function Men() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // ==============================
-  // FETCH PRODUCTS FROM MONGODB
-  // ==============================
+
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/category/Men")
+    fetch("https://demoshopapp-tn4i.vercel.app/api/products/category/Men")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");
@@ -40,9 +38,6 @@ function Men() {
       });
   }, []);
 
-  // ==============================
-  // WISHLIST
-  // ==============================
   const toggleLike = (index) => {
     const temp = [...liked];
 
@@ -51,9 +46,6 @@ function Men() {
     setLiked(temp);
   };
 
-  // ==============================
-  // CARD
-  // ==============================
   const toggleCard = (index) => {
     const temp = [...selected];
 

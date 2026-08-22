@@ -49,7 +49,7 @@ function SareeShopping() {
           {/* Add To Cart */}
           <button
             className="cartButton"
-            onClick={() => addToCart(product._id)}
+            onClick={() => addToCart(product)}
           >
             <FaShoppingCart />
             Add to Cart
@@ -70,7 +70,6 @@ function SareeShopping() {
 
       </div>
 
-      {/* ================= RIGHT SECTION ================= */}
 
       <div className="rightSection">
 
@@ -98,7 +97,6 @@ function SareeShopping() {
 
         </div>
 
-        {/* ================= PRICE ================= */}
 
         <div className="price">
 
@@ -122,7 +120,6 @@ function SareeShopping() {
 
         <hr />
 
-        {/* ================= DELIVERY ================= */}
 
         <div className="deliveryBox">
 
@@ -135,7 +132,6 @@ function SareeShopping() {
 
         </div>
 
-        {/* ================= OFFERS ================= */}
 
         <div className="offerBox">
 
@@ -165,7 +161,7 @@ function SareeShopping() {
 
         <hr />
 
-        {/* ================= FEATURES ================= */}
+
 
         <div className="featureBox">
 
@@ -188,7 +184,7 @@ function SareeShopping() {
 
         <hr />
 
-        {/* ================= PRODUCT DETAILS ================= */}
+  
 
         <div className="detailsBox">
 

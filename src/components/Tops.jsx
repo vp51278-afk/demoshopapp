@@ -32,16 +32,14 @@ function Tops() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH TOPS FROM MONGODB
-  // ======================================
+
   useEffect(() => {
     const fetchTops = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Tops"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Tops"
         );
 
         if (!response.ok) {
@@ -86,9 +84,7 @@ function Tops() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+ 
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -99,9 +95,6 @@ function Tops() {
     });
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
   if (loading) {
     return (
       <>
@@ -120,9 +113,7 @@ function Tops() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -142,9 +133,7 @@ function Tops() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+
   return (
     <>
       {/* Category Section */}

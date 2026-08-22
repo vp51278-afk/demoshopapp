@@ -27,16 +27,13 @@ function Vegetables() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH VEGETABLES FROM MONGODB
-  // ======================================
   useEffect(() => {
     const fetchVegetables = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Vegetables"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Vegetables"
         );
 
         if (!response.ok) {
@@ -74,9 +71,6 @@ function Vegetables() {
     fetchVegetables();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -87,9 +81,7 @@ function Vegetables() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -100,9 +92,6 @@ function Vegetables() {
     });
   };
 
-  // ======================================
-  // OPEN PRODUCT
-  // ======================================
   const openProduct = (item, index) => {
     toggleCard(index);
 
@@ -119,9 +108,7 @@ function Vegetables() {
     });
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
+
   if (loading) {
     return (
       <>
@@ -140,9 +127,7 @@ function Vegetables() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -162,9 +147,6 @@ function Vegetables() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
   return (
     <>
       {/* Category Section */}

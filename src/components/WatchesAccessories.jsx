@@ -28,16 +28,14 @@ function WatchesAccessories() {
   // Error
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH PRODUCTS FROM MONGODB
-  // ======================================
+  
   useEffect(() => {
     const fetchWatchesAccessories = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/WatchesAccessories"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/WatchesAccessories"
         );
 
         if (!response.ok) {
@@ -76,9 +74,7 @@ function WatchesAccessories() {
     fetchWatchesAccessories();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -89,9 +85,7 @@ function WatchesAccessories() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+ 
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -102,9 +96,7 @@ function WatchesAccessories() {
     });
   };
 
-  // ======================================
-  // OPEN PRODUCT
-  // ======================================
+
   const openProduct = (item, index) => {
     toggleCard(index);
 
@@ -121,9 +113,7 @@ function WatchesAccessories() {
     });
   };
 
-  // ======================================
-  // LOADING
-  // ======================================
+  
   if (loading) {
     return (
       <>
@@ -142,9 +132,7 @@ function WatchesAccessories() {
     );
   }
 
-  // ======================================
-  // ERROR
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -164,9 +152,7 @@ function WatchesAccessories() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+
   return (
     <>
       {/* Category Section */}

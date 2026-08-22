@@ -27,9 +27,7 @@ function Women() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH WOMEN PRODUCTS FROM MONGODB
-  // ======================================
+
 
   useEffect(() => {
     const fetchWomen = async () => {
@@ -37,7 +35,7 @@ function Women() {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Women"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Women"
         );
 
         if (!response.ok) {
@@ -71,9 +69,7 @@ function Women() {
     fetchWomen();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
 
   const toggleLike = (index) => {
     setLiked((previous) => {
@@ -85,9 +81,7 @@ function Women() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
 
   const toggleCard = (index) => {
     setSelected((previous) => {
@@ -99,9 +93,7 @@ function Women() {
     });
   };
 
-  // ======================================
-  // ADD TO CART
-  // ======================================
+
 
   const handleAddToCart = async (e, productId) => {
     e.stopPropagation();
@@ -109,9 +101,6 @@ function Women() {
     await addToCart(productId, 1);
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
 
   if (loading) {
     return (
@@ -131,9 +120,7 @@ function Women() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
 
   if (error) {
     return (
@@ -154,9 +141,7 @@ function Women() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+
 
   return (
     <>

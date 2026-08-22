@@ -14,7 +14,6 @@ import {
 } from "react-icons/fa";
 
 function JacketsShopping() {
-
   const location = useLocation();
 
   const product = location.state;
@@ -29,198 +28,194 @@ function JacketsShopping() {
   }
 
   // MongoDB image handling
-  const productImage = `/${String(
-    product.image || product.img || ""
-  ).replace(/^\/+/, "")}`;
+  const productImage = product.image || product.img;
 
   return (
-    <>
-      <div className="shoppingPage">
+    <div className="shoppingPage">
 
-        {/* ================= LEFT SECTION ================= */}
 
-        <div className="leftSection">
 
-          <img
-            src={productImage}
-            alt={product.name}
-            className="mainImage"
-          />
+      <div className="leftSection">
 
-          <div className="buttonBox">
+        <img
+          src={productImage}
+          alt={product.name}
+          className="mainImage"
+        />
 
-            {/* Add To Cart */}
-            <button
-              className="cartButton"
-              onClick={() => addToCart(product._id)}
-            >
-              <FaShoppingCart />
-              Add to Cart
-            </button>
+        <div className="buttonBox">
 
-            {/* Buy Now */}
-            <button
-              className="buyButton"
-              onClick={() => {
-                console.log("Buy Now:", product);
-              }}
-            >
-              <FaBolt />
-              Buy Now
-            </button>
+          {/* Add To Cart */}
+          <button
+            className="cartButton"
+            onClick={() => addToCart(product)}
+          >
+            <FaShoppingCart />
+            Add to Cart
+          </button>
 
-          </div>
-
-        </div>
-
-        {/* ================= RIGHT SECTION ================= */}
-
-        <div className="rightSection">
-
-          {/* Product Name */}
-          <h1>
-            {product.name}
-          </h1>
-
-          {/* Rating */}
-          <div className="ratingBox">
-
-            <span className="rating">
-              4.5
-            </span>
-
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-
-            <span>
-              ({product.reviews || 0} Ratings)
-            </span>
-
-          </div>
-
-          {/* ================= PRICE ================= */}
-
-          <h2 className="price">
-
-            ₹{product.price}
-
-            {product.oldPrice && (
-              <del>
-                ₹{product.oldPrice}
-              </del>
-            )}
-
-            {product.discount && (
-              <span>
-                {product.discount}
-              </span>
-            )}
-
-          </h2>
-
-          <hr />
-
-          {/* ================= DELIVERY ================= */}
-
-          <div className="deliveryBox">
-
-            <h3>Delivery</h3>
-
-            <p>
-              <FaTruck style={{ color: "green" }} />
-              Free Delivery by Tomorrow
-            </p>
-
-          </div>
-
-          {/* ================= OFFERS ================= */}
-
-          <div className="offerBox">
-
-            <h3>Available Offers</h3>
-
-            <ul>
-
-              <li>
-                ✔ Bank Offer: 10% Instant Discount
-              </li>
-
-              <li>
-                ✔ No Cost EMI Available
-              </li>
-
-              <li>
-                ✔ Cash on Delivery Available
-              </li>
-
-            </ul>
-
-          </div>
-
-          <hr />
-
-          {/* ================= FEATURES ================= */}
-
-          <div className="featureBox">
-
-            <div>
-              <FaTruck />
-              <p>Fast Delivery</p>
-            </div>
-
-            <div>
-              <FaUndo />
-              <p>7 Days Return</p>
-            </div>
-
-            <div>
-              <FaShieldAlt />
-              <p>Secure Payment</p>
-            </div>
-
-          </div>
-
-          <hr />
-
-          {/* ================= PRODUCT DETAILS ================= */}
-
-          <div className="detailsBox">
-
-            <h3>About this Item</h3>
-
-            <ul>
-
-              <li>
-                Premium Quality Product
-              </li>
-
-              <li>
-                Stylish & Modern Design
-              </li>
-
-              <li>
-                Comfortable & Perfect Fit
-              </li>
-
-              <li>
-                Easy to Wash & Maintain
-              </li>
-
-              <li>
-                Durable Premium Finish
-              </li>
-
-            </ul>
-
-          </div>
+          {/* Buy Now */}
+          <button
+            className="buyButton"
+            onClick={() => {
+              console.log("Buy Now:", product);
+            }}
+          >
+            <FaBolt />
+            Buy Now
+          </button>
 
         </div>
 
       </div>
-    </>
+
+   
+
+      <div className="rightSection">
+
+        {/* Product Name */}
+        <h1>
+          {product.name}
+        </h1>
+
+        {/* Rating */}
+        <div className="ratingBox">
+
+          <span className="rating">
+            4.5
+          </span>
+
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+          <FaStar />
+
+          <span>
+            ({product.reviews || 0} Ratings)
+          </span>
+
+        </div>
+
+  
+
+        <div className="price">
+
+          <span className="newPrice">
+            ₹{product.price}
+          </span>
+
+          {product.oldPrice && (
+            <del className="oldPrice">
+              ₹{product.oldPrice}
+            </del>
+          )}
+
+          {product.discount && (
+            <span className="discount">
+              {product.discount}
+            </span>
+          )}
+
+        </div>
+
+        <hr />
+
+
+        <div className="deliveryBox">
+
+          <h3>Delivery</h3>
+
+          <p>
+            <FaTruck style={{ color: "green" }} />
+            Free Delivery by Tomorrow
+          </p>
+
+        </div>
+
+
+
+        <div className="offerBox">
+
+          <h3>Available Offers</h3>
+
+          <ul>
+
+            <li>
+              ✔ Bank Offer: 10% Instant Discount
+            </li>
+
+            <li>
+              ✔ No Cost EMI Available
+            </li>
+
+            <li>
+              ✔ Cash on Delivery Available
+            </li>
+
+          </ul>
+
+        </div>
+
+        <hr />
+
+       
+
+        <div className="featureBox">
+
+          <div>
+            <FaTruck />
+            <p>Fast Delivery</p>
+          </div>
+
+          <div>
+            <FaUndo />
+            <p>7 Days Return</p>
+          </div>
+
+          <div>
+            <FaShieldAlt />
+            <p>Secure Payment</p>
+          </div>
+
+        </div>
+
+        <hr />
+
+
+        <div className="detailsBox">
+
+          <h3>About this Item</h3>
+
+          <ul>
+
+            <li>
+              Premium Quality Jacket
+            </li>
+
+            <li>
+              Stylish & Modern Design
+            </li>
+
+            <li>
+              Comfortable & Perfect Fit
+            </li>
+
+            <li>
+              Warm & Suitable for Winter
+            </li>
+
+            <li>
+              Durable Premium Finish
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
   );
 }
 

@@ -32,9 +32,7 @@ function BluetoothSpeakers() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // FETCH PRODUCTS FROM MONGODB
-  // =====================================================
+  
 
   useEffect(() => {
 
@@ -43,7 +41,7 @@ function BluetoothSpeakers() {
       try {
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/BluetoothSpeakers"
+         "https://demoshopapp-tn4i.vercel.app/api/products/category/BluetoothSpeakers"
         );
 
         if (!response.ok) {
@@ -89,9 +87,7 @@ function BluetoothSpeakers() {
   }, []);
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+
 
   const handleAddToCart = async (productId) => {
 
@@ -128,7 +124,7 @@ function BluetoothSpeakers() {
 
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+    "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 
@@ -148,9 +144,6 @@ function BluetoothSpeakers() {
       const data = await response.json();
 
 
-      // =================================================
-      // SUCCESS
-      // =================================================
 
       if (response.ok) {
 

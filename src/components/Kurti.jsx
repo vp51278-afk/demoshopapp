@@ -17,14 +17,12 @@ function Kurti() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // ==============================
-  // Fetch Kurti Products
-  // ==============================
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Kurti"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Kurti"
         );
 
         if (!response.ok) {
@@ -47,9 +45,7 @@ function Kurti() {
     fetchProducts();
   }, []);
 
-  // ==============================
-  // Wishlist
-  // ==============================
+  
   const toggleLike = (index) => {
     const temp = [...liked];
 
@@ -58,9 +54,6 @@ function Kurti() {
     setLiked(temp);
   };
 
-  // ==============================
-  // Card Selection
-  // ==============================
   const toggleCard = (index) => {
     const temp = [...selected];
 

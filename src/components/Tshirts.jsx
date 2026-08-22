@@ -27,16 +27,14 @@ function Tshirts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH T-SHIRTS FROM MONGODB
-  // ======================================
+  
   useEffect(() => {
     const fetchTshirts = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/T-Shirts"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/T-Shirts"
         );
 
         if (!response.ok) {
@@ -78,9 +76,7 @@ function Tshirts() {
     fetchTshirts();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -91,9 +87,7 @@ function Tshirts() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -104,9 +98,6 @@ function Tshirts() {
     });
   };
 
-  // ======================================
-  // OPEN PRODUCT
-  // ======================================
   const openProduct = (item, index) => {
     toggleCard(index);
 
@@ -123,9 +114,6 @@ function Tshirts() {
     });
   };
 
-  // ======================================
-  // LOADING UI
-  // ======================================
   if (loading) {
     return (
       <>
@@ -144,9 +132,7 @@ function Tshirts() {
     );
   }
 
-  // ======================================
-  // ERROR UI
-  // ======================================
+
   if (error) {
     return (
       <>
@@ -166,9 +152,7 @@ function Tshirts() {
     );
   }
 
-  // ======================================
-  // MAIN UI
-  // ======================================
+
   return (
     <>
       {/* Category Section */}

@@ -20,14 +20,11 @@ function CleaningSupplies() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // =========================
-  // Fetch Cleaning Products
-  // =========================
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products?category=CleaningSupplies"
+          "https://demoshopapp-tn4i.vercel.app/api/products?category=CleaningSupplies"
         );
 
         if (!response.ok) {
@@ -51,27 +48,23 @@ function CleaningSupplies() {
     fetchProducts();
   }, []);
 
-  // =========================
+
   // Wishlist
-  // =========================
+
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // =========================
-  // Card Selection
-  // =========================
+
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];
     setSelected(temp);
   };
 
-  // =========================
-  // Open Product
-  // =========================
+
   const openProduct = (item, index) => {
     toggleCard(index);
 

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://demoshopapp-tn4i.vercel.app/api";
 
 // Get all products
 export const getProducts = async () => {

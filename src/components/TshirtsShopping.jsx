@@ -33,9 +33,7 @@ function TshirtsShopping() {
   return (
     <div className="shoppingPage">
 
-      {/* ============================= */}
-      {/* LEFT SECTION */}
-      {/* ============================= */}
+ 
 
       <div className="leftSection">
 

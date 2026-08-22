@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "./FruitsShopping.css";
+import { addToCart } from "./addToCart";
 
 import {
   FaStar,
@@ -25,6 +26,11 @@ function FruitsShopping() {
     );
   }
 
+  // Add To Cart
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
   return (
     <div className="shoppingPage">
 
@@ -39,11 +45,16 @@ function FruitsShopping() {
 
         <div className="buttonBox">
 
-          <button className="cartButton">
+          {/* Add To Cart */}
+          <button
+            className="cartButton"
+            onClick={handleAddToCart}
+          >
             <FaShoppingCart />
             Add to Cart
           </button>
 
+          {/* Buy Now */}
           <button className="buyButton">
             <FaBolt />
             Buy Now

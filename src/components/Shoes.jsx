@@ -29,16 +29,14 @@ function Shoes() {
   // Error
   const [error, setError] = useState("");
 
-  // ==========================================
-  // FETCH SHOES FROM MONGODB
-  // ==========================================
+
   useEffect(() => {
     const fetchShoes = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Shoes"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Shoes"
         );
 
         if (!response.ok) {
@@ -74,9 +72,8 @@ function Shoes() {
     fetchShoes();
   }, []);
 
-  // ==========================================
-  // TOGGLE WISHLIST
-  // ==========================================
+
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -87,9 +84,6 @@ function Shoes() {
     });
   };
 
-  // ==========================================
-  // TOGGLE CARD
-  // ==========================================
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];
@@ -100,18 +94,14 @@ function Shoes() {
     });
   };
 
-  // ==========================================
-  // IMAGE PATH
-  // ==========================================
+
   const getImage = (item) => {
     return `/${String(
       item.image || item.img || ""
     ).replace(/^\/+/, "")}`;
   };
 
-  // ==========================================
-  // LOADING
-  // ==========================================
+
   if (loading) {
     return (
       <>
@@ -130,9 +120,7 @@ function Shoes() {
     );
   }
 
-  // ==========================================
-  // ERROR
-  // ==========================================
+ 
   if (error) {
     return (
       <>
@@ -152,9 +140,6 @@ function Shoes() {
     );
   }
 
-  // ==========================================
-  // MAIN UI
-  // ==========================================
   return (
     <>
       {/* Category Section */}

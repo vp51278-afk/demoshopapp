@@ -17,14 +17,12 @@ function Lehenga() {
   const [liked, setLiked] = useState([]);
   const [selected, setSelected] = useState([]);
 
-  // ==============================
-  // Fetch Lehenga Products
-  // ==============================
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/products/category/Lehenga"
+          "https://demoshopapp-tn4i.vercel.app/api/products/category/Lehenga"
         );
 
         if (!response.ok) {
@@ -44,18 +42,14 @@ function Lehenga() {
     fetchProducts();
   }, []);
 
-  // ==============================
-  // Wishlist
-  // ==============================
+
   const toggleLike = (index) => {
     const temp = [...liked];
     temp[index] = !temp[index];
     setLiked(temp);
   };
 
-  // ==============================
-  // Card Selection
-  // ==============================
+  
   const toggleCard = (index) => {
     const temp = [...selected];
     temp[index] = !temp[index];

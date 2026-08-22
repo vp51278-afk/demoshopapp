@@ -33,9 +33,6 @@ function BakeryShopping() {
     );
   }
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
 
   const handleAddToCart = async () => {
 
@@ -60,7 +57,7 @@ function BakeryShopping() {
       setCartMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+ "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 

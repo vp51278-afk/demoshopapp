@@ -31,7 +31,7 @@ function Accessories() {
 
   // Fetch Accessories products from MongoDB
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/category/Accessories")
+    fetch("https://demoshopapp-tn4i.vercel.app/api/products/category/Accessories")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch Accessories products");
@@ -58,9 +58,7 @@ function Accessories() {
   }, []);
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+
 
   const handleAddToCart = async (productId) => {
 
@@ -76,7 +74,7 @@ function Accessories() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/cart/add",
+     "https://demoshopapp-tn4i.vercel.app/api/cart/add",
         {
           method: "POST",
 

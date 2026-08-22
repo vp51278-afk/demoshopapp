@@ -7,8 +7,6 @@ const path = require("path");
 
 const app = express();
 
-
-
 app.use(
   cors({
     origin: [
@@ -21,25 +19,18 @@ app.use(
   })
 );
 
-
 app.use(express.json());
-
-
 
 app.use(
   "/uploads",
   express.static(path.join(__dirname, "uploads"))
 );
 
-
-
 app.get("/", (req, res) => {
   res.json({
     message: "VAJP Mart Backend is running!",
   });
 });
-
-
 
 
 const productRoutes = require("./routes/productRoutes");
@@ -49,9 +40,6 @@ const cartRoutes = require("./routes/cartRoutes");
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartRoutes);
-
-
-
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -66,10 +54,7 @@ mongoose
   });
 
 
-
 module.exports = app;
-
-
 
 
 if (require.main === module) {
@@ -81,4 +66,3 @@ if (require.main === module) {
     );
   });
 }
-
