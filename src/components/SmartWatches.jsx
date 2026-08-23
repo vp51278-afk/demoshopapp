@@ -36,7 +36,7 @@ function SmartWatches() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/SmartWatches"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/SmartWatches"
         );
 
         if (!response.ok) {

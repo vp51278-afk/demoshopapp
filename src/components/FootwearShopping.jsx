@@ -26,6 +26,11 @@ function FootwearShopping() {
     );
   }
 
+  // MongoDB image handling
+  const productImage = `/${String(
+    product.image || product.img || ""
+  ).replace(/^\/+/, "")}`;
+
   // Add To Cart
   const handleAddToCart = () => {
     addToCart(product);
@@ -38,7 +43,7 @@ function FootwearShopping() {
       <div className="leftSection">
 
         <img
-          src={product.img}
+          src={productImage}
           alt={product.name}
           className="mainImage"
         />
@@ -55,7 +60,12 @@ function FootwearShopping() {
           </button>
 
           {/* Buy Now */}
-          <button className="buyButton">
+          <button
+            className="buyButton"
+            onClick={() => {
+              console.log("Buy Now:", product);
+            }}
+          >
             <FaBolt />
             Buy Now
           </button>

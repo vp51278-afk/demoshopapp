@@ -34,7 +34,7 @@ function Tshirts() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/T-Shirts"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/T-Shirts"
         );
 
         if (!response.ok) {

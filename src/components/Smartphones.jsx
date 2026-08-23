@@ -36,7 +36,7 @@ function Smartphones() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Smartphones"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Smartphones"
         );
 
         if (!response.ok) {

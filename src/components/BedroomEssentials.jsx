@@ -39,7 +39,7 @@ function BedroomEssentials() {
       try {
 
         const response = await fetch(
-         "https://demoshopapp-tn4i.vercel.app/api/products/category/Accessories"
+         "https://demoshopapp-yfnk.vercel.app/api/products/category/Accessories"
         );
 
         if (!response.ok) {
@@ -123,7 +123,7 @@ function BedroomEssentials() {
 
 
       const response = await fetch(
-      "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+      "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
 

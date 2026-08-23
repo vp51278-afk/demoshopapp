@@ -38,7 +38,7 @@ function Western() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Western"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Western"
         );
 
         if (!response.ok) {

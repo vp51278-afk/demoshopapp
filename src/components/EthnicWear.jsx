@@ -31,7 +31,7 @@ function EthnicWear() {
       try {
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=EthnicWear"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=EthnicWear"
         );
 
         if (!response.ok) {

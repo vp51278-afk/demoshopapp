@@ -7,9 +7,9 @@ const parser = require("@babel/parser");
 
 const Product = require("./models/Product");
 
-console.log("======================================");
+console.log("====");
 console.log("       PRODUCT IMPORT STARTED");
-console.log("======================================");
+console.log("====");
 
 const srcPath = path.join(
   "C:",
@@ -38,7 +38,7 @@ if (!fs.existsSync(componentsPath)) {
 
 console.log(" Components folder found!");
 
-console.log("--------------------------------------");
+console.log("---");
 
 function getValue(node) {
   if (!node) {
@@ -230,7 +230,7 @@ async function importProducts() {
       " MongoDB connected successfully!"
     );
 
-    console.log("--------------------------------------");
+    console.log("---");
 
 
 
@@ -256,7 +256,7 @@ async function importProducts() {
       `📁 JSX files found: ${files.length}`
     );
 
-    console.log("--------------------------------------");
+    console.log("----");
 
     let allProducts = [];
 
@@ -340,13 +340,13 @@ async function importProducts() {
 
 
 
-    console.log("--------------------------------------");
+    console.log("---");
 
     console.log(
       `\n TOTAL PRODUCTS FOUND: ${allProducts.length}`
     );
 
-    console.log("--------------------------------------");
+    console.log("---");
 
 
     const categoryCount = {};
@@ -386,7 +386,7 @@ async function importProducts() {
       }
     );
 
-    console.log("--------------------------------------");
+    console.log("---");
 
 
     console.log(
@@ -413,7 +413,7 @@ async function importProducts() {
         allProducts
       );
 
-      console.log("--------------------------------------");
+      console.log("---");
 
       console.log(
         "🎉 ALL PRODUCTS IMPORTED SUCCESSFULLY!"
@@ -434,21 +434,21 @@ async function importProducts() {
 
     await mongoose.connection.close();
 
-    console.log("--------------------------------------");
+    console.log("----");
 
     console.log(
       "MongoDB connection closed."
     );
 
-    console.log("======================================");
+    console.log("====");
     console.log("        IMPORT COMPLETED");
-    console.log("======================================");
+    console.log("====");
 
   } catch (error) {
 
-    console.error("\n======================================");
+    console.error("\n=====");
     console.error("           IMPORT FAILED");
-    console.error("======================================");
+    console.error("=====");
 
     console.error(
       "Error:",

@@ -29,16 +29,14 @@ function Skincare() {
   // Error
   const [error, setError] = useState("");
 
-  // ==========================================
-  // FETCH SKINCARE PRODUCTS FROM MONGODB
-  // ==========================================
+
   useEffect(() => {
     const fetchSkincare = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Skincare"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Skincare"
         );
 
         if (!response.ok) {

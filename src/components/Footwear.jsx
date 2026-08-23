@@ -35,7 +35,7 @@ function Footwear() {
       try {
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Footwear"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Footwear"
         );
 
         if (!response.ok) {

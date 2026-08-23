@@ -24,7 +24,7 @@ function CleaningSupplies() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=CleaningSupplies"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=CleaningSupplies"
         );
 
         if (!response.ok) {

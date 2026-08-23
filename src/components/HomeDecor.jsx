@@ -21,7 +21,7 @@ function HomeDecor() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=HomeDecor"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=HomeDecor"
         );
 
         if (!response.ok) {

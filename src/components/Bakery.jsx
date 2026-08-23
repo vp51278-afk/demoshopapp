@@ -30,14 +30,11 @@ function Bakery() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // FETCH BAKERY PRODUCTS
-  // =====================================================
 
   useEffect(() => {
 
     fetch(
-      "https://demoshopapp-tn4i.vercel.app/api/products/category//Bakery"
+      "https://demoshopapp-yfnk.vercel.app/api/products/category//Bakery"
     )
       .then((res) => {
 
@@ -116,7 +113,7 @@ function Bakery() {
     try {
 
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+        "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
 

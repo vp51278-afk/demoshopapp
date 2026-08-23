@@ -32,7 +32,7 @@ function Dining() {
       try {
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Dining"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Dining"
         );
 
         if (!response.ok) {

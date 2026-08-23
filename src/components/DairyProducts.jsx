@@ -33,7 +33,7 @@ function DairyProducts() {
       try {
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=DairyProducts"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=DairyProducts"
         );
 
         if (!response.ok) {

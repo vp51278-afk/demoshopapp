@@ -33,7 +33,7 @@ function Vegetables() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Vegetables"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Vegetables"
         );
 
         if (!response.ok) {

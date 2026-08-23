@@ -41,7 +41,7 @@ function BluetoothSpeakers() {
       try {
 
         const response = await fetch(
-         "https://demoshopapp-tn4i.vercel.app/api/products/category/BluetoothSpeakers"
+         "https://demoshopapp-yfnk.vercel.app/api/products/category/BluetoothSpeakers"
         );
 
         if (!response.ok) {

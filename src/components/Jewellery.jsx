@@ -22,7 +22,7 @@ function Jewellery() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Jewellery"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Jewellery"
         );
 
         if (!response.ok) {

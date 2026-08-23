@@ -19,7 +19,7 @@ function Makeup() {
 
  
   useEffect(() => {
-    fetch("https://demoshopapp-tn4i.vercel.app/api/products/category/Makeup")
+    fetch("https://demoshopapp-yfnk.vercel.app/api/products/category/Makeup")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");

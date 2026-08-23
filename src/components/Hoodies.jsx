@@ -22,7 +22,7 @@ function Hoodies() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Hoodies"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Hoodies"
         );
 
         if (!response.ok) {

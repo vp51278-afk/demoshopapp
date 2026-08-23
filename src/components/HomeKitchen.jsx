@@ -19,7 +19,7 @@ function HomeKitchen() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=HomeKitchen"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=HomeKitchen"
         );
 
         if (!response.ok) {

@@ -18,7 +18,7 @@ function PowerBanks() {
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
-    fetch("https://demoshopapp-tn4i.vercel.app/api/products?category=PowerBanks")
+    fetch("https://demoshopapp-yfnk.vercel.app/api/products?category=PowerBanks")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch products");

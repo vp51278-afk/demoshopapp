@@ -13,7 +13,7 @@ function CategorySection() {
     {
       id: 2,
       name: "Saree",
-      img: "/Elegant wedding sarii✨✨.jpeg",
+      img: "/rt.jpeg",
       path: "/fashion/women/saree",
     },
     {

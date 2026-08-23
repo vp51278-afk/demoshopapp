@@ -21,7 +21,7 @@ function Jeans() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Jeans"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Jeans"
         );
 
         if (!response.ok) {

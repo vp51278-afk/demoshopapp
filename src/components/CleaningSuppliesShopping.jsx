@@ -46,7 +46,7 @@ function CleaningSuppliesShopping() {
       setLoading(true);
 
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+        "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
 

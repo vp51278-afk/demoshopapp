@@ -35,7 +35,7 @@ function WatchesAccessories() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/WatchesAccessories"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/WatchesAccessories"
         );
 
         if (!response.ok) {

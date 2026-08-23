@@ -36,7 +36,7 @@ function StorageOrganization() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/StorageOrganization"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/StorageOrganization"
         );
 
         if (!response.ok) {

@@ -20,9 +20,7 @@ function CoordShopping() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // SAFETY CHECK
-  // =====================================================
+  
 
   if (!product) {
     return (
@@ -38,9 +36,7 @@ function CoordShopping() {
   }
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+ 
 
   const handleAddToCart = async () => {
 
@@ -163,9 +159,7 @@ function CoordShopping() {
       <div className="shoppingPage">
 
 
-        {/* =================================================
-            LEFT SECTION
-        ================================================= */}
+
 
         <div className="leftSection">
 

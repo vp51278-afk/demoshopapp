@@ -15,7 +15,7 @@ export const addToCart = async (item, quantity = 1) => {
       }
   
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+        "demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
   

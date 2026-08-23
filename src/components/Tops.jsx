@@ -39,7 +39,7 @@ function Tops() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Tops"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Tops"
         );
 
         if (!response.ok) {
@@ -71,9 +71,7 @@ function Tops() {
     fetchTops();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];

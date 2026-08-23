@@ -29,16 +29,14 @@ function Trousers() {
   // Error state
   const [error, setError] = useState("");
 
-  // ======================================
-  // FETCH TROUSERS FROM MONGODB
-  // ======================================
+
   useEffect(() => {
     const fetchTrousers = async () => {
       try {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Trousers"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Trousers"
         );
 
         if (!response.ok) {
@@ -68,9 +66,7 @@ function Trousers() {
     fetchTrousers();
   }, []);
 
-  // ======================================
-  // TOGGLE WISHLIST
-  // ======================================
+
   const toggleLike = (index) => {
     setLiked((previous) => {
       const temp = [...previous];
@@ -81,9 +77,7 @@ function Trousers() {
     });
   };
 
-  // ======================================
-  // TOGGLE CARD
-  // ======================================
+
   const toggleCard = (index) => {
     setSelected((previous) => {
       const temp = [...previous];

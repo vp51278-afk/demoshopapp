@@ -22,7 +22,7 @@ function KitchenAppliances() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Kitchen Appliances"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Kitchen Appliances"
         );
 
         if (!response.ok) {

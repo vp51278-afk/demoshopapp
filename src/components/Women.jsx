@@ -35,7 +35,7 @@ function Women() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Women"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Women"
         );
 
         if (!response.ok) {

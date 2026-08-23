@@ -22,7 +22,7 @@ function Kurti() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Kurti"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Kurti"
         );
 
         if (!response.ok) {

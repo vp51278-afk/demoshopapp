@@ -25,7 +25,7 @@ function GardenOutdoor() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Garden%20Outdoor"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Garden%20Outdoor"
         );
 
         if (!response.ok) {

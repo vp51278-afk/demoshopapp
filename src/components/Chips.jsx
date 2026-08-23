@@ -38,7 +38,7 @@ function Chips() {
       try {
 
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products/category/Chips"
+          "https://demoshopapp-yfnk.vercel.app/api/products/category/Chips"
         );
 
         if (!response.ok) {

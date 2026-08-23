@@ -251,7 +251,7 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart/clear",
+        "https://demoshopapp-yfnk.vercel.app/api/cart/clear",
         {
           method: "DELETE",
 

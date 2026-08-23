@@ -21,7 +21,7 @@ function KitchenEssential() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-tn4i.vercel.app/api/products?category=Kitchen"
+          "https://demoshopapp-yfnk.vercel.app/api/products?category=Kitchen"
         );
 
         const data = await response.json();

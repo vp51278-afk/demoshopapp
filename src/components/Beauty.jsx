@@ -39,7 +39,7 @@ function Beauty() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-         "https://demoshopapp-tn4i.vercel.app/api/products/category//Beauty"
+         "https://demoshopapp-yfnk.vercel.app/api/products/category//Beauty"
         );
 
         if (!response.ok) {
@@ -102,7 +102,7 @@ function Beauty() {
       setCartMessage("");
 
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+        "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
 

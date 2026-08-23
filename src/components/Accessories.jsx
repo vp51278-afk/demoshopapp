@@ -31,7 +31,7 @@ function Accessories() {
 
   // Fetch Accessories products from MongoDB
   useEffect(() => {
-    fetch("https://demoshopapp-tn4i.vercel.app/api/products/category/Accessories")
+    fetch("https://demoshopapp-yfnk.vercel.app/api/products/category/Accessories")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch Accessories products");
@@ -74,7 +74,7 @@ function Accessories() {
     try {
 
       const response = await fetch(
-     "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+     "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
 
