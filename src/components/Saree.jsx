@@ -27,7 +27,7 @@ function Saree() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products/category/Saree"
+           `${process.env.REACT_APP_API_URL}/api/products/category/Saree`
         );
 
         if (!response.ok) {

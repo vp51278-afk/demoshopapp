@@ -27,9 +27,6 @@ function ColdDrinksShopping() {
     );
   }
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
 
   const handleAddToCart = async () => {
     const token = localStorage.getItem("token");

@@ -23,7 +23,7 @@ function Shirts() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products/Shirts"
+          `${process.env.REACT_APP_API_URL}/api/products/Shirts`
         );
 
         if (!response.ok) {

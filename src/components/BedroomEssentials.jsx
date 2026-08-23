@@ -39,7 +39,7 @@ function BedroomEssentials() {
       try {
 
         const response = await fetch(
-         "https://demoshopapp-yfnk.vercel.app/api/products/category/Accessories"
+          `${process.env.REACT_APP_API_URL}/api/products/category/BedroomEssentials`
         );
 
         if (!response.ok) {

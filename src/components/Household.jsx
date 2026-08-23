@@ -22,7 +22,7 @@ function Household() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products?category=Household"
+           `${process.env.REACT_APP_API_URL}/api/products?category=Household`
         );
 
         if (!response.ok) {

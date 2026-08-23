@@ -174,7 +174,8 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-        `https://demoshopapp-tn4i.vercel.app/api/cart/remove/${productId}`,
+        `${process.env.REACT_APP_API_URL}/api/cart/remove/${productId}`,
+      
         {
           method: "DELETE",
 

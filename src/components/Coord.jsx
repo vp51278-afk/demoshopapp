@@ -30,7 +30,7 @@ function Coord() {
       try {
 
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products?category=Coord"
+           `${process.env.REACT_APP_API_URL}/api/products?category=Coord1`
         );
 
         if (!response.ok) {

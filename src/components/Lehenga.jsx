@@ -22,7 +22,7 @@ function Lehenga() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products/category/Lehenga"
+           `${process.env.REACT_APP_API_URL}/api/products/category/Lehenga`
         );
 
         if (!response.ok) {

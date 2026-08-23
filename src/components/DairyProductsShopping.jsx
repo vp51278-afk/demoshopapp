@@ -20,9 +20,6 @@ function DairyProductsShopping() {
   const [cartMessage, setCartMessage] = useState("");
 
 
-  // =====================================================
-  // SAFETY CHECK
-  // =====================================================
 
   if (!product) {
     return (
@@ -38,9 +35,7 @@ function DairyProductsShopping() {
   }
 
 
-  // =====================================================
-  // ADD TO CART
-  // =====================================================
+
 
   const handleAddToCart = async () => {
 
@@ -61,9 +56,8 @@ function DairyProductsShopping() {
     try {
 
       setLoading(true);
-
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart/add",
+        "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {
           method: "POST",
 

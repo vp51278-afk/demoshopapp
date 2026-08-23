@@ -3,9 +3,6 @@ const Product = require("../models/Product");
 
 const router = express.Router();
 
-// --------------------------------------
-// GET ALL PRODUCTS
-// --------------------------------------
 
 router.get("/", async (req, res) => {
   try {
@@ -20,9 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// --------------------------------------
-// GET PRODUCTS BY CATEGORY
-// --------------------------------------
+
 
 router.get("/category/:category", async (req, res) => {
   try {
@@ -41,9 +36,7 @@ router.get("/category/:category", async (req, res) => {
   }
 });
 
-// --------------------------------------
-// GET SINGLE PRODUCT BY ID
-// --------------------------------------
+
 
 router.get("/:id", async (req, res) => {
   try {

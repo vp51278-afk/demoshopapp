@@ -7,9 +7,7 @@ const Product = require("../models/Product");
 const authMiddleware = require("../middleware/authMiddleware");
 
 
-// ======================================================
-// GET CART
-// ======================================================
+
 
 router.get("/", authMiddleware, async (req, res) => {
   try {
@@ -39,9 +37,7 @@ router.get("/", authMiddleware, async (req, res) => {
 });
 
 
-// ======================================================
-// ADD PRODUCT TO CART
-// ======================================================
+
 
 router.post("/add", authMiddleware, async (req, res) => {
   try {

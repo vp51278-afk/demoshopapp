@@ -21,7 +21,7 @@ function HomeDecor() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products?category=HomeDecor"
+         `${process.env.REACT_APP_API_URL}/api/products?category=HomeDecor`
         );
 
         if (!response.ok) {

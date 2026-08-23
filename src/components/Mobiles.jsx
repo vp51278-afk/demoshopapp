@@ -19,7 +19,7 @@ function Mobiles() {
 
 
   useEffect(() => {
-    fetch("https://demoshopapp-yfnk.vercel.app/api/products/category/Mobiles")
+    fetch( `${process.env.REACT_APP_API_URL}/api/products/category/Mobiles`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");

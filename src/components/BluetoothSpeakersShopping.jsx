@@ -55,7 +55,6 @@ function BluetoothSpeakersShopping() {
 
       setLoading(true);
       setCartMessage("");
-
       const response = await fetch(
         "https://demoshopapp-yfnk.vercel.app/api/cart/add",
         {

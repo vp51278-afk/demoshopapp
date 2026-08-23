@@ -36,7 +36,7 @@ function Smartphones() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products/category/Smartphones"
+           `${process.env.REACT_APP_API_URL}/api/products/category/Smartphones`
         );
 
         if (!response.ok) {

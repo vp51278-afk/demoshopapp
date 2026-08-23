@@ -53,7 +53,7 @@ function AccessoriesShopping() {
       setCartMessage("");
 
       const response = await fetch(
-        "https://demoshopapp-yfnk.vercel.app/api/cart/add",
+        `${process.env.REACT_APP_API_URL}/api/cart/add`,
         {
           method: "POST",
 

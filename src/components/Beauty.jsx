@@ -39,7 +39,8 @@ function Beauty() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-         "https://demoshopapp-yfnk.vercel.app/api/products/category//Beauty"
+          `${process.env.REACT_APP_API_URL}/api/products/category/Beauty`
+        
         );
 
         if (!response.ok) {
@@ -100,9 +101,8 @@ function Beauty() {
       setCartLoading(productId);
 
       setCartMessage("");
-
       const response = await fetch(
-        "https://demoshopapp-yfnk.vercel.app/api/cart/add",
+        `${process.env.REACT_APP_API_URL}/api/cart/add`,
         {
           method: "POST",
 

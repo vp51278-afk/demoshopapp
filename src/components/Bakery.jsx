@@ -34,7 +34,7 @@ function Bakery() {
   useEffect(() => {
 
     fetch(
-      "https://demoshopapp-yfnk.vercel.app/api/products/category//Bakery"
+      `${process.env.REACT_APP_API_URL}/api/products/category//Bakery`
     )
       .then((res) => {
 

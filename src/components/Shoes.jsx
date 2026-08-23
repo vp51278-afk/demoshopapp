@@ -36,7 +36,7 @@ function Shoes() {
         setLoading(true);
 
         const response = await fetch(
-          "https://demoshopapp-yfnk.vercel.app/api/products/category/Shoes"
+           `${process.env.REACT_APP_API_URL}/api/products/category/Shoes`
         );
 
         if (!response.ok) {

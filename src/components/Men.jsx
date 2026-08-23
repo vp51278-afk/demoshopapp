@@ -19,7 +19,7 @@ function Men() {
 
 
   useEffect(() => {
-    fetch("https://demoshopapp-yfnk.vercel.app/api/products/category/Men")
+    fetch( `${process.env.REACT_APP_API_URL}/api/products/category/Men`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch products");

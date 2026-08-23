@@ -2,9 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
   try {
-    // =========================
-    // 1. Authorization header
-    // =========================
+
 
     const authHeader = req.headers.authorization;
 
@@ -15,10 +13,6 @@ const authMiddleware = (req, res, next) => {
     }
 
 
-    // =========================
-    // 2. Check Bearer format
-    // =========================
-
     if (!authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         message: "Invalid authorization format. Use Bearer token",
@@ -26,9 +20,7 @@ const authMiddleware = (req, res, next) => {
     }
 
 
-    // =========================
-    // 3. Extract token
-    // =========================
+   
 
     const token = authHeader.split(" ")[1];
 
@@ -39,9 +31,6 @@ const authMiddleware = (req, res, next) => {
     }
 
 
-    // =========================
-    // 4. Check JWT secret
-    // =========================
 
     if (!process.env.JWT_SECRET) {
       console.error("JWT_SECRET is missing in .env");
@@ -52,9 +41,7 @@ const authMiddleware = (req, res, next) => {
     }
 
 
-    // =========================
-    // 5. Verify JWT
-    // =========================
+
 
     const decoded = jwt.verify(
       token,
@@ -62,9 +49,7 @@ const authMiddleware = (req, res, next) => {
     );
 
 
-    // =========================
-    // 6. Check userId
-    // =========================
+
 
     if (!decoded || !decoded.userId) {
       return res.status(401).json({
@@ -73,16 +58,11 @@ const authMiddleware = (req, res, next) => {
     }
 
 
-    // =========================
-    // 7. Store user ID
-    // =========================
+
 
     req.userId = decoded.userId;
 
 
-    // =========================
-    // 8. Continue
-    // =========================
 
     next();
 
