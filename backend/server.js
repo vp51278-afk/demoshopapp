@@ -7,18 +7,19 @@ const path = require("path");
 
 const app = express();
 
+
+
 app.use(
   cors({
     origin: [
       "http://localhost:3000",
       "http://localhost:5173",
-      "https://demoshopapp-lg9s-one.vercel.app",
+      "https://demoshopapp-rosy.vercel.app", 
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
-
 app.use(express.json());
 
 app.use(
