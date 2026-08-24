@@ -14,7 +14,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:5173",
-      "https://demoshopapp-rosy.vercel.app", 
+      "https://demoshopapp-rosy.vercel.app",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,

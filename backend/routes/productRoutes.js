@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 const router = express.Router();
 
 
+// Get all products
 router.get("/", async (req, res) => {
   try {
     const products = await Product.find();
@@ -16,6 +17,31 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
+
+// Get products by category
+router.get("/category/:category", async (req, res) => {
+  try {
+    const category = req.params.category;
+
+    const products = await Product.find({
+      category: category
+    });
+
+    res.json(products);
+
+  } catch (error) {
+    console.error("Category error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch category products",
+      error: error.message,
+    });
+  }
+});
+
+
+module.exports = router;
 
 
 
