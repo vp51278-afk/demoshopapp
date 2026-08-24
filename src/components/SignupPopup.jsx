@@ -37,7 +37,7 @@ function SignupPopup({ closePopup, openLogin }) {
       setMessage("");
 
       const response = await fetch(
-        "/api/users/signup",
+        `${process.env.REACT_APP_API_URL}/api/users/signup`,
         {
           method: "POST",
           headers: {
