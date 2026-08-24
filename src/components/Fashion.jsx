@@ -33,8 +33,8 @@ function Fashion() {
 
       try {
 
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=Fashion`
+   const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/Fashion`
         );
 
         if (!response.ok) {

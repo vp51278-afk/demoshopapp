@@ -18,8 +18,8 @@ function HomeKitchen() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=HomeKitchen`
+         const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/HomeKitchen`
         );
 
         if (!response.ok) {

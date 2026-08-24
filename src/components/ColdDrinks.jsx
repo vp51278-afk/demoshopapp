@@ -29,8 +29,8 @@ function ColdDrinks() {
 
       try {
 
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=ColdDrinks`
+         const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/ColdDrinks`
         );
 
         if (!response.ok) {

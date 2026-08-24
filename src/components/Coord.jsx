@@ -29,8 +29,8 @@ function Coord() {
 
       try {
 
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=Coord1`
+       const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/Coord1`
         );
 
         if (!response.ok) {

@@ -31,8 +31,8 @@ function Dining() {
 
       try {
 
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=Dining`
+       const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/Dining`
         );
 
         if (!response.ok) {

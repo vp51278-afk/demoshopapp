@@ -18,7 +18,7 @@ function PowerBanks() {
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
-    fetch( `${process.env.REACT_APP_API_URL}/api/products?category=PowerBanks`)
+    fetch( `${process.env.REACT_APP_API_URL}/api/products/category/PowerBanks`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch products");

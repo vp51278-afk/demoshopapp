@@ -32,8 +32,8 @@ function DairyProducts() {
 
       try {
 
-        const response = await fetch(
-       `${process.env.REACT_APP_API_URL}/api/products?category=DairyProducts`
+          const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/DairyProducts`
         );
 
         if (!response.ok) {

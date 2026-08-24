@@ -20,8 +20,8 @@ function KitchenEssential() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=Kitchen`
+       const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/Kitchen`
         );
 
         const data = await response.json();

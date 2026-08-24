@@ -21,8 +21,8 @@ function Jackets() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=Jackets`
+       const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/Jackets`
         );
 
         if (!response.ok) {

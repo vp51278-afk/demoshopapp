@@ -31,7 +31,7 @@ function EthnicWear() {
       try {
 
         const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=EthnicWear`
+          `${process.env.REACT_APP_API_URL}/api/products/category/EthnicWear`
         );
 
         if (!response.ok) {

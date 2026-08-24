@@ -27,9 +27,8 @@ function Earbuds() {
     const fetchProducts = async () => {
 
       try {
-
-        const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products?category=Earbuds`
+   const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/category/Earbuds`
         );
 
         if (!response.ok) {

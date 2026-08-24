@@ -1,4 +1,4 @@
-const API_URL = "https://demoshopapp-yfnk.vercel.app/api";
+const API_URL = process.env.REACT_APP_API_URL + "/api";
 
 // Get all products
 export const getProducts = async () => {
