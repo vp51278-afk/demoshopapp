@@ -25,7 +25,7 @@ function GardenOutdoor() {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/products/category/Garden%20Outdoor`
+          `${process.env.REACT_APP_API_URL}/api/products/category/GardenOutdoor`
         );
 
         if (!response.ok) {
