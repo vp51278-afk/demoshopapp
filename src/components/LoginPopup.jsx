@@ -22,7 +22,7 @@ function LoginPopup({ closePopup, openSignup }) {
       setMessage("");
 
       const response = await fetch(
-        "http://localhost:5000/api/users/login",
+        "/api/users/login",
         {
           method: "POST",
           headers: {
