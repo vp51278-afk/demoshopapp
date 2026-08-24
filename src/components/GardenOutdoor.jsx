@@ -145,10 +145,10 @@ function GardenOutdoor() {
             {/* 
                 Product Image
            */}
-            <img
-              src={item.img}
-              alt={item.name}
-            />
+           <img
+  src={item.image || item.img}
+  alt={item.name}
+/>
 
             {/*
                 Product Name

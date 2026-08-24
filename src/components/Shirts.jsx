@@ -136,7 +136,7 @@ function Shirts() {
 
             {/* Product Image */}
             <img
-              src={item.image}
+              src={item.image || item.img}
               alt={item.name}
             />
 

@@ -32,9 +32,8 @@ function Tshirts() {
     const fetchTshirts = async () => {
       try {
         setLoading(true);
-
         const response = await fetch(
-           `${process.env.REACT_APP_API_URL}/api/products/category/T-Shirts`
+          `${process.env.REACT_APP_API_URL}/api/products/category/Tshirts`
         );
 
         if (!response.ok) {
@@ -226,11 +225,9 @@ function Tshirts() {
 
             {/* Product Image */}
             <img
-              src={`/${String(
-                item.image || ""
-              ).replace(/^\/+/, "")}`}
-              alt={item.name}
-            />
+  src={item.image || item.img}
+  alt={item.name}
+/>
 
             {/* Product Name */}
             <h3 className="head">

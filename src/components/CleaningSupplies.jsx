@@ -128,7 +128,7 @@ function CleaningSupplies() {
 
             {/* Product Image */}
             <img
-              src={item.img}
+             src={item.image || item.img}
               alt={item.name}
             />
 
