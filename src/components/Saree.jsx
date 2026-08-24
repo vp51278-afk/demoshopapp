@@ -138,9 +138,9 @@ function Saree() {
 
               {/* Product Image */}
               <img
-                src={item.image}
-                alt={item.name}
-              />
+              src={item.image || item.img}
+              alt={item.name}
+            />
 
               {/* Product Name */}
               <h3 className="head">

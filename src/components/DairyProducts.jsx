@@ -198,12 +198,8 @@ function DairyProducts() {
 
 
             {/* Product Image */}
-
             <img
-              src={
-                item.image ||
-                item.img
-              }
+              src={item.image || item.img}
               alt={item.name}
             />
 
