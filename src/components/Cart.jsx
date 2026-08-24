@@ -22,7 +22,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        "https://demoshopapp-tn4i.vercel.app/api/cart",
+        `${process.env.REACT_APP_API_URL}/api/cart`,
         {
           method: "GET",
           headers: {
@@ -100,7 +100,7 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-       "https://demoshopapp-tn4i.vercel.app/api/cart/update",
+        `${process.env.REACT_APP_API_URL}/api/cart/update`,
         {
           method: "PUT",
 
@@ -252,7 +252,7 @@ function Cart() {
       setActionLoading(true);
 
       const response = await fetch(
-        "https://demoshopapp-yfnk.vercel.app/api/cart/clear",
+        `${process.env.REACT_APP_API_URL}/api/cart/clear`,
         {
           method: "DELETE",
 
